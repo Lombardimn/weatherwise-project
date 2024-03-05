@@ -1,0 +1,30 @@
+---
+
+---
+
+<div class="loading" data-loading></div>
+
+<style>
+  .loading {
+    position: absolute;
+    top: 0%;
+    left: 0;
+    width: var(--w-100p);
+    height: var(--h-100p);
+    background-color: var(--background-color);
+    /* display: grid; */
+    display: none;
+    place-items: center;
+    z-index: 1;
+  }
+
+  .loading::before {
+    content: "";
+    width: var(--w-3);
+    height: var(--h-3);
+    border: 4px solid var(--on-background-color);
+    border-block-start-color: transparent;
+    border-radius: var(--br-circle);
+    animation: loading 500ms linear infinite;
+  }
+</style>

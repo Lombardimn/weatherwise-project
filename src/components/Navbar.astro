@@ -1,0 +1,128 @@
+---
+
+---
+
+<div class="container flex items-center justify-between">
+  <a href="/" class="logo flex justify-between items-center">
+    <img 
+        src="/public/icons/header/logo.svg" 
+        alt="logo de la página"
+        width="58"
+        height="58"
+        class=" w-24"
+      />
+    <h1 class="text-heading2">WeatherWise</h1>
+  </a>
+
+  <!-- active -->
+  <section 
+    class="search-view fixed top-0 left-0 w-full h-screen bg-surface-color text-on-surface-color opacity-0 z-10 transition-clip-path duration-500 ease" 
+    data-search-view
+  >
+  <!-- searching -->
+    <article 
+      class="search-wrapper relative border-b-2 border-solid border-outline-color p-1 before:content-[''] before:absolute before:top-1/2 before:transform 
+        before:-translate-y-1/2 before:right-6 before:w-8 before:h-8 before:border-[3px] before:border-solid before:border-t-0 before:border-on-surface-color 
+        before:rounded-full before:animate-charging before:hidden" 
+    >
+      <input 
+        type="search" 
+        class="search-field h-20 leading-[80px] ps-24 pe-4 focus:outline-none placeholder:text-on-surface-variant-2-color"
+        placeholder="Buscar ciudad..."
+        autocomplete="off"
+        data-search-field
+      > 
+      <img
+        src="/public/icons/header/search-location.svg"
+        alt="lupa de búsqueda"
+        width="24"
+        height="24"
+        class=" hidden"
+        data-search-icon
+      />
+      <button 
+      class="icon-btn leading-icon has-state top-1/2 left-7 -translate-x-1/2 -translate-y-1/2 ml-4" 
+      aria-label="Cerrar búsqueda"
+      data-search-toggler
+      >
+        <img 
+          src="/public/icons/header/arrow-back.svg" 
+          alt="Cerrar búsqueda"
+          width="24"
+          height="24"
+          data-search-toggler-icon
+        >
+      </button>
+    </article>
+
+    <article class="search-result" data-search-result>
+      <ul class="view-list py-2 px-4" data-search-list>
+        <li class="view-item relative h-18 flex justify-start items-center gap-4 ps-4 pe-6">
+          <img
+            src="/public/icons/header/pin-location.svg"
+            alt="pin de ubicación"
+            width="24"
+            height="24"
+            data-search-pin-icon
+            class="text-on-surface-variant-color"
+          />
+          <div>
+            <p class="item-title">Córdoba</p>
+            <p class="label-2 item-subtitle text-on-surface-variant-color">República Argentina, AR</p>
+          </div>
+          <a href="#" class="item-link has-state inset-0 shadow-none rounded-lg" data-search-toggler></a>
+        </li>
+      </ul>
+    </article>
+  </section>
+
+  <section class="header-actions flex items-center gap-4">
+    <button
+      class="icon-btn has-state"
+      aria-label="Abrir buscador"
+      data-search-toggler
+    >
+      <img 
+        src="/public/icons/header/search.svg" 
+        alt="buscador"
+        width="24" 
+        height="24"
+        data-search-toggler-icon
+      />
+    </button>
+    <a 
+      href="#/current-location" 
+      class="btn-primary has-state" 
+      data-current-location-btn
+    >
+      <img
+        src="/public/icons/header/location.svg"
+        alt="pin de ubicación"
+        width="24"
+        height="24"
+        data-current-location-btn-icon
+      />
+      <span class="span hidden">Ubicación actual</span>
+    </a>
+  </section>
+</div>
+
+
+<style>
+  .search-view { 
+    clip-path: circle(4% at calc(100% - 102px) 5%);
+    visibility: hidden;
+  }
+
+  .search-view.active { 
+    clip-path: circle(130% at 73% 5%);
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .search-wrapper:has(.searching)::before { display: block;}
+
+  .search-field::-webkit-search-cancel-button { display: none;}
+
+  .leading-icon, .item-link { position: absolute;}  
+</style>

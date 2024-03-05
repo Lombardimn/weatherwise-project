@@ -1,0 +1,44 @@
+---
+interface Props {
+    title?: string | undefined;
+    description?: string | undefined;
+    contentAlt?: string | undefined;
+    contentDomain?: string | undefined;
+    contentUrl?: string | undefined;
+}
+
+const {
+    title = "WeatherWise.io",
+    description = "Consultas de clima en tiempo real.",
+    contentAlt = 'Marca descriptivo de LombardiDev',
+    contentDomain = 'lombardidev.ar',
+    contentUrl = 'https://lombardidev.ar',
+} = Astro.props;
+---
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width" />
+<meta name="generator" content={Astro.generator} />
+
+<!-- HTML Meta Tags -->
+<title>{title}</title>
+<meta name="description" content={description} />
+
+<!-- Facebook Meta Tags -->
+<meta property="og:url" content={contentUrl} />
+<meta property="og:type" content="website" />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content="https://lombardidev.ar/assets/icons/logo2.png" />
+<meta property="og:image:alt" content={contentAlt} />
+
+<!-- Twitter Meta Tags -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:domain" content={contentDomain} />
+<meta property="twitter:url" content={contentUrl} />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content="https://lombardidev.ar/assets/icons/logo2.png" />
+<meta property="og:image:alt" content={contentAlt} />
+
+<link rel="icon" type="image/png" href="https://lombardidev.ar/assets/icons/logo2.png" class="icono-redondo"/>

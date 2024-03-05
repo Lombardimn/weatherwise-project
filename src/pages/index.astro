@@ -1,0 +1,24 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CurrentWeather from '../components/CurrentWeather.astro'
+import Forecast from '../components/Forecast.astro';
+import Highlights from '../components/Highlights.astro'
+import HourlyForescast from '../components/HourlyForecast.astro'
+import Footer from '../components/Footer.astro'
+import Loading from '../components/Loading.astro'
+---
+
+<Layout title='WeatherWise App'>
+	<aside class="[grid-area:aside] relative h-full">
+		<CurrentWeather />
+		<Forecast />
+	</aside>
+	<main class="[grid-area:main]">
+		<Highlights />
+		<HourlyForescast />
+	</main>
+	<footer class="[grid-area:footer] min-h-[100px]">
+		<Footer />
+	</footer>
+	<Loading />
+</Layout>

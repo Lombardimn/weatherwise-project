@@ -1,0 +1,64 @@
+---
+
+---
+
+<article 
+  class="section current-weather" 
+  aria-label="current weather" 
+  data-current-weather
+>
+  <div class="card card-lg current-weather-card">
+    <h2 class="title-2 card-title">Actual</h2>
+    <div class="weapper mt-4 mb-4 flex gap-2 items-center">
+      <p class="heading">
+        25&deg;<sup>C</sup>
+      </p>
+      <img 
+        src="/public/icons/weather/sunny.svg"
+        width="120"
+        height="120"
+        alt="cielo limpio" 
+        class="weather-icon mx-auto"
+      >
+    </div>
+    <p class="body-3 capitalize">Cielo Nublado</p>
+
+    <ul class="meta-list mt-4 pt-4 border-t-2 border-outline-color">
+      <li class="meta-item flex items-center gap-2">
+        <span class="m-icon">
+          <img
+            src="/public/icons/header/calendar-2.svg"
+            alt="calendario"
+            width="24"
+            height="24"
+            class="m-icon"
+          />
+        </span>
+        <p class="title-3 meta-text text-on-surface-variant-color">Jueves 16, Feb</p>
+      </li>
+
+      <li class="meta-item flex items-center gap-2">
+        <span class="m-icon">
+          <img
+            src="/public/icons/header/pin-location.svg"
+            alt="pin de ubicación"
+            width="24"
+            height="24"
+            class="m-icon"
+          />
+        </span>
+        <p class="title-3 meta-text text-on-surface-variant-color">Córdoba, AR</p>
+      </li>
+    </ul>
+  </div>
+</article>
+
+<style>
+  .section:not(:last-child) {
+    margin-block-end: 16px;
+  }
+
+  .current-weather-card .meta-item:not(:last-child) {
+    margin-block-end: 12px;
+  }
+</style>
