@@ -28,6 +28,10 @@ export default {
 				'white-alpha-8': 'hsla(0, 0%, 100%, 0.08)',
 				'black-alpha-10': 'hsla(0, 0%, 0%, 0.1)',
 			},
+			boxShadow: {
+				'shadow1': '0px 1px 3px hsla(0, 0%, 0%, 0.5)',
+				'shadow2': '0px 3px 6px hsla(0, 0%, 0%, 0.4)',
+			},
 			backgroundImage: {
 				'gradient': 'linear-gradient(180deg, hsla(270, 5%, 7%, 0) 0%, hsla(270, 5%, 7%, 0.8) 65%,	hsla(270, 5%, 7%) 100%)',
 			},
@@ -54,16 +58,24 @@ export default {
 				bold: '700',
 				black: '900',
 			},
+			animation: {
+				'loading': 'loading 1s linear infinite',
+				'rotate': 'rotate 2s linear infinite',
+			},
 			keyframes:{
-				loading: {
-					'0%': '{ transform: translateY(-50%) rotate(0) }',
-					'100%': '{ transform: translateY(-50%) rotate(1turn) }'
+				'loading': {
+					'0%': { transform: 'translateY(-50%) rotate(0)' },
+					'100%': { transform: 'translateY(-50%) rotate(1turn)' },
 				}
 			},
-			animation: {
-				'charging': 'loading 1s linear infinite'
-			},
+			clipPath: {
+        circle: 'circle(4% at calc(100% - 102px) 5%)',
+				circle2: 'circle(130% at 73% 5%)',
+      },
 		}
 	},
 }
-	plugins: []
+	plugins: [
+		require('@tailwindcss/aspect-ratio'),
+		require('@tailwindcss/typography'),
+	]

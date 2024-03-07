@@ -9,15 +9,15 @@ import Loading from '../components/Loading.astro'
 ---
 
 <Layout title='WeatherWise App'>
-	<aside class="[grid-area:aside] relative h-full">
+	<aside class="[grid-area:aside] hidden relative h-full">
 		<CurrentWeather />
 		<Forecast />
 	</aside>
-	<main class="[grid-area:main]">
+	<main class="[grid-area:main] hidden">
 		<Highlights />
-		<HourlyForescast />
 	</main>
-	<footer class="[grid-area:footer] min-h-[100px]">
+	<footer class="[grid-area:footer] hidden md:min-h-[100px]">
+		<HourlyForescast />
 		<Footer />
 	</footer>
 	<Loading />

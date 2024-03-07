@@ -16,7 +16,10 @@ const { title, description } = Astro.props;
 		<MainHead title={title} description={description} />
 	</head>
 	<body>
-		<div id="app" class="relative h-screen p-8 gap-14 before:content-[''] before:fixed before:left-0 before:bottom-0 before:w-full before:h-10 bg-gradient">
+		<div 
+			id="app" 
+			class=" relative h-screen p-4 gap-7 before:content-[''] before:fixed before:left-0 before:bottom-0 before:w-full before:h-10 before:bg-gradient
+			md:relative md:h-screen md:p-8 md:gap-14 md:before:content-[''] md:before:fixed md:before:left-0 md:before:bottom-0 md:before:w-full md:before:h-10 md:bg-gradient">
 			<header class="[grid-area:header] header">
 				<Navbar />
 			</header>
@@ -26,18 +29,20 @@ const { title, description } = Astro.props;
 </html>
 
 <style>
- #app {
+
+	#app {
 	display: grid;
 	grid-template-areas:
-		"header header header"
-		"aside main main"
-		"footer footer footer";
-	grid-template-columns: 300px 1fr 1fr;
-	grid-template-rows: auto 1fr 1fr;
+		"header"
+		"aside"
+		"main"
+		"footer";
+	grid-template-rows: 96px 1fr 1fr 96px;
+	grid-template-columns: 1fr;
 	overflow-y: auto;
- }
+	}
 
- #app:-webkit-scrollbar-thumb {
+	#app:-webkit-scrollbar-thumb {
     background-color: transparent;
   }
 
@@ -46,7 +51,7 @@ const { title, description } = Astro.props;
   }
 
   #app::-webkit-scrollbar-button {
-    height: var(--h-062);
+    height: 10px;
   }
 
   #app::before {
@@ -54,6 +59,17 @@ const { title, description } = Astro.props;
     pointer-events: none;
     z-index: 1;
   }
+
+	@media (min-width: 768px) {
+		#app {
+			grid-template-areas:
+				"header header header"
+				"aside main main"
+				"footer footer footer";
+			grid-template-columns: 300px 1fr 1fr;
+			grid-template-rows: auto 1fr 1fr;
+		}
+	}
 </style>
 
 <style is:global>
@@ -120,7 +136,7 @@ const { title, description } = Astro.props;
 
 		--fz-heading: 5.6rem;
 		--fz-heading-2: 3.2rem;
-		--fz-heading-3: 4rem;
+		--fz-heading-3: 2.4rem;
 		--fz-h1: 2rem;
 		--fz-h2: 1.8rem;
 		--fz-h3: 1.6rem;
@@ -149,118 +165,6 @@ const { title, description } = Astro.props;
 		/* TRANSITIONS */
 
 		--transitions-short: 100ms ease;
-
-		/* VALUES */
-
-		--w-1: 16px;
-		--w-150: 24px;
-		--w-2: 32px;
-		--w-3: 48px;
-		--w-350: 56px;
-		--w-4: 64px;
-		--w-5: 80px;
-		--w-6: 96px;
-		--w-7: 112px;
-		--w-8: 128px;
-		--w-9: 144px;
-		--w-10: 160px;
-		--w-11: 176px;
-		--w-12: 192px;
-		--w-13: 208px;
-		--w-14: 224px;
-		--h-375k: 600px;
-		--w-5k: 800px;
-		--w-10M: 1600px;
-
-		--w-25p: 25%;
-		--w-50p: 50%;
-		--w-100p: 100%;
-
-		--h-062: 10px;
-		--h-1: 16px;
-		--h-150: 24px;
-		--h-2: 32px;
-		--h-250: 40px;
-		--h-3: 48px;
-		--h-350: 56px;
-		--h-4: 64px;
-		--h-5: 80px;
-		--h-6: 96px;
-		--h-7: 112px;
-		--h-8: 128px;
-		--h-9: 144px;
-		--h-10: 160px;
-		--h-11: 176px;
-		--h-12: 192px;
-		--h-13: 208px;
-		--h-14: 224px;
-		--h-375k: 600px;
-		--h-5k: 800px;
-
-		--h-25p: 25%;
-		--h-50p: 50%;
-		--h-100p: 100%;
-
-		--vw-100: 100vw;
-		--vh-100: 100vh;
-		--svw-100: 100svw;
-		--svh-100: 100svh;
-
-		--gap-025: 4px;
-		--gap-037: 6px;
-		--gap-050: 8px;
-		--gap-075: 12px;
-		--gap-1: 16px;
-		--gap-125: 20px;
-		--gap-150: 24px;
-		--gap-175: 28px;
-		--gap-2: 32px;
-		--gap-225: 36px;
-		--gap-250: 40px;
-		--gap-275: 44px;
-		--gap-3: 48px;
-		--gap-325: 52px;
-		--gap-350: 56px;
-		--gap-375: 60px;
-		--gap-4: 64px;
-		--gap-425: 68px;
-		--gap-450: 72px;
-		--gap-475: 76px;
-		--gap-5: 80px;
-		--gap-525: 84px;
-		--gap-550: 88px;
-		--gap-575: 92px;
-		--gap-6: 96px;
-		--gap-625: 100px;
-
-		--p-2: 2px;
-		--p-4: 4px;
-		--p-6: 6px;
-		--p-8: 8px;
-		--p-10: 10px;
-		--p-12: 12px;
-		--p-16: 16px;
-		--p-20: 20px;
-		--p-24: 24px;
-		--p-28: 28px;
-		--p-32: 32px;
-		--p-36: 36px;
-		--p-40: 40px;
-		--p-44: 44px;
-		--p-48: 48px;
-		--p-52: 52px;
-		--p-56: 56px;
-		--p-60: 60px;
-		--p-64: 64px;
-		--p-68: 68px;
-		--p-72: 72px;
-		--p-76: 76px;
-		--p-80: 80px;
-		--p-84: 84px;
-		--p-88: 88px;
-		--p-92: 92px;
-		--p-96: 96px;
-		--p-100: 100px;
 	}
 
 	/*
@@ -414,7 +318,7 @@ const { title, description } = Astro.props;
 	}
 
 	.icon-btn {
-		background-color: var(--white-alpha-8);
+		/* background-color: var(--white-alpha-8); */
 		width: 48px;
 		height: 48px;	
 		display: grid;
@@ -422,9 +326,9 @@ const { title, description } = Astro.props;
 		border-radius: var(--br-circle);
 	}
 
-	.has-state {
+	/* .has-state {
 		position: relative;
-	}
+	} */
 
 	.has-state:hover {
 		box-shadow: var(--shadow-1);
