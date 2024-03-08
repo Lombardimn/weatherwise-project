@@ -61,16 +61,22 @@ export default {
 			animation: {
 				'loading': 'loading 1s linear infinite',
 				'rotate': 'rotate 2s linear infinite',
+				'ripple': 'ripple 250ms ease forwards',
 			},
 			keyframes:{
 				'loading': {
 					'0%': { transform: 'translateY(-50%) rotate(0)' },
 					'100%': { transform: 'translateY(-50%) rotate(1turn)' },
+				},
+				'ripple': {
+					'0%': { clipPath: 'circle(0% at 50% 50%)' },
+					'100%': { clipPath: 'circle(100% at 50% 50%)' },
 				}
 			},
 			clipPath: {
         circle: 'circle(4% at calc(100% - 102px) 5%)',
 				circle2: 'circle(130% at 73% 5%)',
+				circle3: 'circle(100% at 50% 50%)',
       },
 		}
 	},

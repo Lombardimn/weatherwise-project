@@ -2,7 +2,7 @@
 
 ---
 
-<div class="container flex items-center justify-between">
+<div class="max-w-[1600px] w-full mx-auto p-4 flex items-center justify-between">
   <a href="/" class="logo flex items-center">
     <img 
         src="/public/icons/header/logo.svg" 
@@ -16,11 +16,11 @@
 
   <!-- active -->
   <section 
-    class="search-view fixed top-0 left-0 w-full h-svh bg-surface-color text-on-surface-color clip-circle opacity-0 z-10 active:opacity-100 active:visible active:clip-circle2"
+    class="search-view fixed top-0 left-0 w-full h-svh bg-surface-color text-on-surface-color clip-circle opacity-0 hidden z-[4] active:opacity-100 active:visible active:clip-circle2"
     data-search-view
   >
     <article 
-      class="search-wrapper relative border-b border-solid border-outline-color before:content-[''] before:absolute before:top-1/2 before:transform before:-translate-y-1/2 before:right-4 before:w-10 before:h-10 before:border-[3px] before:border-solid before:border-on-surface-color before:rounded-full before:border-t-transparent before:animate-loading before:hidden has-[.searching]:before:block" 
+      class="search-wrapper relative border-b border-solid border-outline-color before:content-[''] before:absolute before:top-1/2 before:transform before:-translate-y-1/2 before:right-4 before:w-10 before:h-10 before:border-[3px] before:border-solid before:border-on-surface-color before:rounded-full before:border-t-transparent before:animate-loading before:hidden has-[.searching]:before:block group" 
     >
       <!-- searching -->
       <input 
@@ -39,7 +39,7 @@
         data-search-icon
       />
       <button 
-      class="icon-btn has-state leading-icon absolute top-1/2 left-[25px] transform -translate-y-1/2 -translate-x-1/2 bg-transparent shadow-none" 
+      class="leading-icon w-12 h-12 grid place-items-center rounded-full absolute top-1/2 left-[25px] transform -translate-y-1/2 -translate-x-1/2 bg-transparent shadow-none hover:shadow-shadow1 focus:shadow-none focus-visible:shadow-none before:content-[''] before:absolute before:inset-0 before:rounded-[inherit] before:clip-circle3 before:ease-in-out before:duration-100 hover:before:bg-white-alpha-4 focus:before:bg-white-alpha-8 focus:before:animate-ripple" 
       aria-label="Cerrar búsqueda"
       data-search-toggler
       >
@@ -55,7 +55,7 @@
 
     <article class="search-result" data-search-result>
       <ul class="view-list pt-2 pb-4" data-search-list>
-        <li class="view-item relative h-14 flex content-start items-center gap-4 ps-4 pe-6">
+        <li class="view-item relative h-16 flex content-start items-center gap-4 ps-4 pe-6">
           <img
             src="/public/icons/header/pin-location.svg"
             alt="pin de ubicación"
@@ -68,7 +68,7 @@
             <p class="item-title">Córdoba</p>
             <p class="label-2 item-subtitle text-on-surface-variant-color">República Argentina, AR</p>
           </div>
-          <a href="#" class="item-link has-state absolute inset-0 shadow-none" data-search-toggler></a>
+          <a href="#" class="item-link absolute inset-0 shadow-none hover:shadow-shadow1 focus:shadow-none focus-visible:shadow-none before:content-[''] before:absolute before:inset-0 before:rounded-[inherit] before:clip-circle3 before:ease-in-out before:duration-100 hover:before:bg-white-alpha-4 focus:before:bg-white-alpha-8 focus:before:animate-ripple" data-search-toggler></a>
         </li>
       </ul>
     </article>
@@ -76,7 +76,7 @@
 
   <section class="header-actions flex items-center gap-4">
     <button
-      class="icon-btn has-state relative"
+      class="w-16 h-16 grid place-items-center rounded-full relative hover:shadow-shadow1 focus:shadow-none focus-visible:shadow-none before:content-[''] before:absolute before:inset-0 before:rounded-[inherit] before:clip-circle3 before:ease-in-out before:duration-100 hover:before:bg-white-alpha-4 focus:before:bg-white-alpha-8 focus:before:animate-ripple"
       aria-label="Abrir buscador"
       data-search-toggler
     >
@@ -90,7 +90,7 @@
     </button>
     <a 
       href="#/current-location" 
-      class="btn-primary has-state relative px-3" 
+      class="bg-primary-color text-on-primary-color h-16 leading-[48px] max-w-max flex items-center gap-4 rounded-[28px] relative px-3 hover:shadow-shadow1 focus:shadow-none focus-visible:shadow-none before:content-[''] before:absolute before:inset-0 before:rounded-[inherit] before:clip-circle3 before:ease-in-out before:duration-100 hover:before:bg-white-alpha-4 focus:before:bg-white-alpha-8 focus:before:animate-ripple disabled:bg-outline-color disabled:text-on-surface-variant-color disabled:cursor-not-allowed disabled:before:hidden"  
       data-current-location-btn
     >
       <img
@@ -100,12 +100,7 @@
         height="24"
         data-current-location-btn-icon
       />
-      <span class="span hidden">Ubicación actual</span>
+      <span class="font-semiBold text-h5 hidden">Ubicación actual</span>
     </a>
   </section>
 </div>
-
-
-<style>
-
-</style>
