@@ -1,15 +1,14 @@
 ---
-
+import Icon from "./Icon.astro"
 ---
 
 <div class="max-w-[1600px] w-full mx-auto p-4 flex items-center justify-between">
   <a href="/" class="logo flex items-center">
-    <img 
-        src="/public/icons/header/logo.svg" 
-        alt="logo de la página"
-        width="40"
-        height="40"
-        class=""
+      <Icon 
+        icon="logo" 
+        width='40px' 
+        heigth='40px'
+        viewBox='0 0 24 24'
       />
     <h1 class="text-h1">WeatherWise</h1>
   </a>
@@ -25,45 +24,48 @@
       <!-- searching -->
       <input 
         type="search" 
+        name="searching location"
         class="search-field h-20 leading-[80px] ps-20 pe-4 focus:outline-none placeholder:text-on-surface-variant-2-color appearance-none"
         placeholder="Buscar ciudad..."
         autocomplete="off"
         data-search-field
       > 
-      <img
-        src="/public/icons/header/search-location.svg"
-        alt="lupa de búsqueda"
-        width="24"
-        height="24"
-        class="hidden"
-        data-search-icon
-      />
+      <div class="hidden">
+        <Icon 
+          icon="search-location" 
+          width='24px' 
+          heigth='24px'
+          viewBox='0 -0.5 25 25'
+          data-search-icon
+        />
+      </div>
       <button 
       class="leading-icon w-12 h-12 grid place-items-center rounded-full absolute top-1/2 left-[25px] transform -translate-y-1/2 -translate-x-1/2 bg-transparent shadow-none hover:shadow-shadow1 focus:shadow-none focus-visible:shadow-none before:content-[''] before:absolute before:inset-0 before:rounded-[inherit] before:clip-circle3 before:ease-in-out before:duration-100 hover:before:bg-white-alpha-4 focus:before:bg-white-alpha-8 focus:before:animate-ripple" 
       aria-label="Cerrar búsqueda"
       data-search-toggler
       >
-        <img 
-          src="/public/icons/header/arrow-back.svg" 
-          alt="Cerrar búsqueda"
-          width="24"
-          height="24"
+        <Icon 
+          icon="arrow-back" 
+          width='24px' 
+          heigth='24px'
+          viewBox='0 0 24 24'
           data-search-toggler-icon
-        >
+        />
       </button>
     </article>
 
     <article class="search-result" data-search-result>
       <ul class="view-list pt-2 pb-4" data-search-list>
         <li class="view-item relative h-16 flex content-start items-center gap-4 ps-4 pe-6">
-          <img
-            src="/public/icons/header/pin-location.svg"
-            alt="pin de ubicación"
-            width="32"
-            height="32"
+          <div class="text-on-surface-variant-color">
+            <Icon 
+            icon="pin-location" 
+            width='36px' 
+            heigth='36px' 
+            viewBox='0 0 24 24'
             data-search-pin-icon
-            class="text-on-surface-variant-color"
-          />
+            />
+          </div>
           <div>
             <p class="item-title">Córdoba</p>
             <p class="label-2 item-subtitle text-on-surface-variant-color">República Argentina, AR</p>
@@ -80,11 +82,11 @@
       aria-label="Abrir buscador"
       data-search-toggler
     >
-      <img 
-        src="/public/icons/header/search.svg" 
-        alt="buscador"
-        width="24" 
-        height="24"
+      <Icon 
+        icon="search" 
+        width='24px' 
+        heigth='24px' 
+        viewBox='0 0 24 24'
         data-search-toggler-icon
       />
     </button>
@@ -93,11 +95,11 @@
       class="bg-primary-color text-on-primary-color h-16 leading-[48px] max-w-max flex items-center gap-4 rounded-[28px] relative px-3 hover:shadow-shadow1 focus:shadow-none focus-visible:shadow-none before:content-[''] before:absolute before:inset-0 before:rounded-[inherit] before:clip-circle3 before:ease-in-out before:duration-100 hover:before:bg-white-alpha-4 focus:before:bg-white-alpha-8 focus:before:animate-ripple disabled:bg-outline-color disabled:text-on-surface-variant-color disabled:cursor-not-allowed disabled:before:hidden"  
       data-current-location-btn
     >
-      <img
-        src="/public/icons/header/location.svg"
-        alt="pin de ubicación"
-        width="24"
-        height="24"
+      <Icon 
+        icon="location" 
+        width='24px' 
+        heigth='24px' 
+        viewBox='0 0 24 24'
         data-current-location-btn-icon
       />
       <span class="font-semiBold text-h5 hidden">Ubicación actual</span>
