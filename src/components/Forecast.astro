@@ -1,5 +1,5 @@
 ---
-
+import Icon from "./Icon.astro"
 ---
 
 <article 
@@ -8,106 +8,106 @@
   data-5-day-forecast
 >
   <h2 
-    class="title-2 mb-2" 
+    class="text-h2 mb-2 ms-2" 
     id="forecast-label"
   >
     Próximos 5 días
   </h2>
-  <section class="card card-lg forecast-card">
+  <section class="forecast-card bg-surface-color text-on-surface-color rounded-[28px] p-5">
     <ul class="flex flex-col gap-2">
-      <li class="card-item flex justify-between items-center">
-        <div class="icon-wrapper flex justify-center items-center">
-          <img 
-            src="/public/icons/weather/clear.svg" 
-            width="70"
-            height="70"
-            alt="Cielo limpio"
-            class="weather-icon"
-          >
-
+      <li class="card-item flex justify-between items-center mb-3">
+        <div class="icon-wrapper flex justify-center items-center gap-2">
+          <div class="ms-0 me-0">
+            <Icon 
+              icon="clear" 
+              width='70px' 
+              heigth='70px'
+              viewBox='0 0 354 354'
+            />
+          </div>
           <span class="span flex justify-center items-center">
-            <p class="title-2">25&deg;</p>
+            <p class="text-h2 mb-0">25&deg;</p>
           </span>
         </div>
 
-        <p class="label-1 text-on-surface-variant font-semibold text-right">17 Feb</p>
-        <p class="label-1 text-on-surface-variant font-semibold text-right">Sábado</p>
+        <p class="text-label text-on-surface-variant font-semibold text-right w-full text-on-surface-variant-color">17 Feb</p>
+        <p class="text-label text-on-surface-variant font-semibold text-right w-full text-on-surface-variant-color">Sábado</p>
+      </li>
+
+      <li class="card-item flex justify-between items-center mb-3">
+        <div class="icon-wrapper flex justify-center items-center gap-2">
+          <div class="ms-0 me-0">
+            <Icon 
+              icon="clear" 
+              width='70px' 
+              heigth='70px'
+              viewBox='0 0 354 354'
+            />
+          </div>
+          <span class="span flex justify-center items-center">
+            <p class="text-h2 mb-0">25&deg;</p>
+          </span>
+        </div>
+
+        <p class="text-label text-on-surface-variant font-semibold text-right w-full text-on-surface-variant-color">17 Feb</p>
+        <p class="text-label text-on-surface-variant font-semibold text-right w-full text-on-surface-variant-color">Sábado</p>
+      </li>
+
+      <li class="card-item flex justify-between items-center mb-3">
+        <div class="icon-wrapper flex justify-center items-center gap-2">
+          <div class="ms-0 me-0">
+            <Icon 
+              icon="clear" 
+              width='70px' 
+              heigth='70px'
+              viewBox='0 0 354 354'
+            />
+          </div>
+          <span class="span flex justify-center items-center">
+            <p class="text-h2 mb-0">25&deg;</p>
+          </span>
+        </div>
+
+        <p class="text-label text-on-surface-variant font-semibold text-right w-full text-on-surface-variant-color">17 Feb</p>
+        <p class="text-label text-on-surface-variant font-semibold text-right w-full text-on-surface-variant-color">Sábado</p>
+      </li>
+
+      <li class="card-item flex justify-between items-center mb-3">
+        <div class="icon-wrapper flex justify-center items-center gap-2">
+          <div class="ms-0 me-0">
+            <Icon 
+              icon="clear" 
+              width='70px' 
+              heigth='70px'
+              viewBox='0 0 354 354'
+            />
+          </div>
+          <span class="span flex justify-center items-center">
+            <p class="text-h2 mb-0">25&deg;</p>
+          </span>
+        </div>
+
+        <p class="text-label text-on-surface-variant font-semibold text-right w-full text-on-surface-variant-color">17 Feb</p>
+        <p class="text-label text-on-surface-variant font-semibold text-right w-full text-on-surface-variant-color">Sábado</p>
       </li>
 
       <li class="card-item flex justify-between items-center">
-        <div class="icon-wrapper flex justify-center items-center">
-          <img 
-            src="/public/icons/weather/clear.svg" 
-            width="70"
-            height="70"
-            alt="Cielo limpio"
-            class="weather-icon"
-          >
-
+        <div class="icon-wrapper flex justify-center items-center gap-2">
+          <div class="ms-0 me-0">
+            <Icon 
+              icon="clear" 
+              width='70px' 
+              heigth='70px'
+              viewBox='0 0 354 354'
+            />
+          </div>
           <span class="span flex justify-center items-center">
-            <p class="title-2">25&deg;</p>
+            <p class="text-h2 mb-0">25&deg;</p>
           </span>
         </div>
 
-        <p class="label-1 text-on-surface-variant font-semibold text-right">17 Feb</p>
-        <p class="label-1 text-on-surface-variant font-semibold text-right">Sábado</p>
-      </li>
-
-      <li class="card-item flex justify-between items-center">
-        <div class="icon-wrapper flex justify-center items-center">
-          <img 
-            src="/public/icons/weather/clear.svg" 
-            width="70"
-            height="70"
-            alt="Cielo limpio"
-            class="weather-icon"
-          >
-
-          <span class="span flex justify-center items-center">
-            <p class="title-2">25&deg;</p>
-          </span>
-        </div>
-
-        <p class="label-1 text-on-surface-variant font-semibold text-right">17 Feb</p>
-        <p class="label-1 text-on-surface-variant font-semibold text-right">Sábado</p>
-      </li>
-
-      <li class="card-item flex justify-between items-center">
-        <div class="icon-wrapper flex justify-center items-center">
-          <img 
-            src="/public/icons/weather/clear.svg" 
-            width="70"
-            height="70"
-            alt="Cielo limpio"
-            class="weather-icon"
-          >
-
-          <span class="span flex justify-center items-center">
-            <p class="title-2">25&deg;</p>
-          </span>
-        </div>
-
-        <p class="label-1 text-on-surface-variant font-semibold text-right">17 Feb</p>
-        <p class="label-1 text-on-surface-variant font-semibold text-right">Sábado</p>
-      </li>
-
-      <li class="card-item flex justify-between items-center">
-        <div class="icon-wrapper flex justify-center items-center">
-          <img 
-            src="/public/icons/weather/clear.svg" 
-            width="70"
-            height="70"
-            alt="Cielo limpio"
-            class="weather-icon"
-          >
-
-          <span class="span flex justify-center items-center">
-            <p class="title-2">25&deg;</p>
-          </span>
-        </div>
-
-        <p class="label-1 text-on-surface-variant font-semibold text-right">17 Feb</p>
-        <p class="label-1 text-on-surface-variant font-semibold text-right">Sábado</p>
+        <p class="text-label text-on-surface-variant font-semibold text-right w-full text-on-surface-variant-color">17 Feb</p>
+        <p class="text-label text-on-surface-variant font-semibold text-right w-full text-on-surface-variant-color">Sábado</p>
       </li>
     </ul>
   </section>

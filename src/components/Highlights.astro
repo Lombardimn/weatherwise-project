@@ -1,41 +1,39 @@
 ---
-
+import Icon from "./Icon.astro"
 ---
 
 <article class="section highlights" aria-labelledby="highlights-label" data-highlights>
-  <div class="card card-lg">
-    <h2 class="title-2 mb-3" id ="highlight-label">Lo destacado de Hoy</h2>
+  <div class="bg-surface-color text-on-surface-color rounded-[28px] p-5">
+    <h2 class="text-h2 mb-3" id ="highlight-label">Lo destacado de Hoy</h2>
     <div class="highlight-list grid gap-5">
-      <div class="card card-sm highlight-card one">
-        <h3 class="title-3 text-on-surface-variant-color mb-5">Índice de Calidad de Aire</h3>
+      <div class="highlight-card one relative bg-black-alpha-10 text-on-surface-color rounded-2xl p-4">
+        <h3 class="text-h3 font-semiBold text-on-surface-variant-color mb-5">Índice de Calidad de Aire</h3>
         <div class="wrapper flex justify-between gap-4 items-center">
-          <img
-            src="/public/icons/wind/wind-good.svg"
-            alt="cielo limpio"
-            width="40"
-            height="40"
-            class="weather-icon"
-          >
-
-          <ul class="card-list flex items-center flex-wrap">
+          <Icon
+            icon="wind-good" 
+            width='70px' 
+            heigth='70px'
+            viewBox='0 0 263 221'
+          />
+          <ul class="card-list flex items-center flex-wrap gap-y-2">
             <li class="card-item flex items-center w-1/2 justify-end gap-1">
-              <p class="title-1">23.3</p>
-              <p class="title-1">PM<sub>2.5</sub></p>
+              <p class="text-h1">23.3</p>
+              <p class="text-h1">PM<sub>2.5</sub></p>
             </li>
 
             <li class="card-item flex items-center w-1/2 justify-end gap-1">
-              <p class="title-1">23.3</p>
-              <p class="title-1">PM<sub>2.5</sub></p>
+              <p class="text-h1">23.3</p>
+              <p class="text-h1">PM<sub>2.5</sub></p>
             </li>
 
             <li class="card-item flex items-center w-1/2 justify-end gap-1">
-              <p class="title-1">23.3</p>
-              <p class="title-1">PM<sub>2.5</sub></p>
+              <p class="text-h1">23.3</p>
+              <p class="text-h1">PM<sub>2.5</sub></p>
             </li>
 
             <li class="card-item flex items-center w-1/2 justify-end gap-1">
-              <p class="title-1">23.3</p>
-              <p class="title-1">PM<sub>2.5</sub></p>
+              <p class="text-h1">23.3</p>
+              <p class="text-h1">PM<sub>2.5</sub></p>
             </li>
           </ul>
         </div>
@@ -46,98 +44,96 @@
 
       </div>
 
-      <div class="card card-sm highlight-card two flex flex-col justify-between">
-        <h3 class="title-3 mb-6">Amanecer & Atardecer</h3>
+      <div class="card card-sm highlight-card two relative flex flex-col justify-between bg-black-alpha-10 text-on-surface-color rounded-2xl p-4">
+        <h3 class="title-3 text-h3 font-semiBold mb-5">Amanecer & Atardecer</h3>
         <div class="card-list flex items-center content-center">
             <div class="card-item flex items-center w-1/2 justify-center flex-wrap gap-x-8 gap-y-16">
-              <img
-                src="/public/icons/weather/sunrise.svg"
-                alt="amanecer"
-                width="40"
-                height="40"
-                class="m-icon m-1"
-              >
-
+              <Icon 
+                icon="sunrise" 
+                width='60px' 
+                heigth='60px'
+                viewBox='0 0 307 179'
+              />
               <div>
-                <p class="label-1 text-on-surface-variant-color mb-1">Amanecer</p>
-                <p class="title-1">06.30 AM</p>
+                <p class="label-1 text-label text-on-surface-variant-color mb-1">Amanecer</p>
+                <p class="text-h3">06.30 AM</p>
               </div>
             </div>
 
             <div class="card-item flex items-center w-1/2 justify-center flex-wrap gap-x-8 gap-y-16">
-              <img
-                src="/public/icons/weather/night.svg"
-                alt="amanecer"
-                width="40"
-                height="40"
-                class="m-icon m-1"
-              >
-
+              <Icon 
+                icon="night" 
+                width='50px' 
+                heigth='50px'
+                viewBox='0 0 313 317'
+              />
               <div>
-                <p class="label-1 text-on-surface-variant-color mb-1">Atardecer</p>
-                <p class="title-1">17.54 PM</p>
+                <p class="label-1 text-label text-on-surface-variant-color mb-1">Atardecer</p>
+                <p class="text-h3">17.54 PM</p>
               </div>
             </div>
         </div>
       </div>
 
-      <div class="card card-sm highlight-card">
-        <h3 class="title-3">Humedad</h3>
+      <div class="card card-sm highlight-card relative bg-black-alpha-10 text-on-surface-color rounded-2xl p-4">
+        <h3 class="title-3 text-h3 font-semiBold mb-5">Humedad</h3>
         <div class="wrapper flex justify-between gap-4 items-center">
-          <img
-            src="/public/icons/weather/humidity.svg"
-            alt="porcentaje de humedad"
-            width="24"
-            height="24"
-            class="weather-icon m-3"
-          >
-
-          <p class="title-1">35<sub>%</sub></p>
+          <div class="m-3">
+            <Icon 
+              icon="humidity" 
+              width='24px' 
+              heigth='24px'
+              viewBox='0 0 175 247'
+            />
+          </div>
+          <p class="text-h1">35<sub>%</sub></p>
         </div>
       </div>
 
-      <div class="card card-sm highlight-card">
-        <h3 class="title-3">Presión</h3>
+      <div class="card card-sm highlight-card relative bg-black-alpha-10 text-on-surface-color rounded-2xl p-4">
+        <h3 class="title-3 text-h3 font-semiBold mb-5">Presión</h3>
         <div class="wrapper flex justify-between gap-4 items-center">
-          <img
-            src="/public/icons/weather/pressure.svg"
-            alt="valores de presión"
-            width="24"
-            height="24"
-            class="weather-icon m-3"
-          >
+          <div class="m-3">
+            <Icon 
+              icon="pressure" 
+              width='24px' 
+              heigth='24px'
+              viewBox='0 0 512.00 512.00'
+            />
+          </div>
 
-          <p class="title-1">1052<sub>hPa</sub></p>
+          <p class="text-h1">1052<sub>hPa</sub></p>
         </div>
       </div>
 
-      <div class="card card-sm highlight-card">
-        <h3 class="title-3">Visibilidad</h3>
+      <div class="card card-sm highlight-card relative bg-black-alpha-10 text-on-surface-color rounded-2xl p-4">
+        <h3 class="title-3 text-h3 font-semiBold mb-5">Visibilidad</h3>
         <div class="wrapper flex justify-between gap-4 items-center">
-          <img
-            src="/public/icons/weather/visibility.svg"
-            alt="visibilidad"
-            width="24"
-            height="24"
-            class="weather-icon m-3"
-          >
-
-          <p class="title-1">10<sub>Km</sub></p>
+          <div class="m-3">
+            <Icon 
+              icon="visibility" 
+              width='24px' 
+              heigth='24px'
+              viewBox='0 0 512 512'
+            />
+          </div>
+          <p class="text-h1">10<sub>Km</sub></p>
         </div>
       </div>
 
-      <div class="card card-sm highlight-card">
-        <h3 class="title-3">Sensación térmica</h3>
+      <div class="card card-sm highlight-card relative bg-black-alpha-10 text-on-surface-color rounded-2xl p-4">
+        <h3 class="title-3 text-h3 font-semiBold mb-5">Sensación térmica</h3>
         <div class="wrapper flex justify-between gap-4 items-center">
-          <img
-            src="/public/icons/weather/thermostat.svg"
-            alt="sensación climática"
-            width="24"
-            height="24"
-            class="weather-icon m-3"
-          >
+          <div class="m-3">
+            <Icon 
+              icon="thermostat" 
+              width='28px' 
+              heigth='28px'
+              viewBox='0 0 217 342'
+            />
+          </div>
 
-          <p class="title-1">25&deg;<sup>C</sup></p>
+          <p class="text-h1">25&deg;<sup>C</sup></p>
         </div>
       </div>
     </div>
@@ -146,11 +142,6 @@
 
 
 <style>
-  .highlights .card-sm {
-    background-color: var(--black-alpha-10);
-    position: relative;
-  }
-
   .badge.aqi-1 {
     background-color: var(--bg-aqi-1-color);
     color: var(--on-bg-aqi-1-color);
