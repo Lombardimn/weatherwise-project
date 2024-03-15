@@ -9,6 +9,7 @@ interface Props {
     heigth?: string,
     viewBox?: string,
     transform?: string,
+    loading?: string,
 }
 
 const { 
@@ -17,7 +18,8 @@ const {
     heigth,
     width,
     viewBox,
-    transform, 
+    transform,
+    loading = 'lazy', 
 } = Astro.props;
 const iconPath = iconPaths[icon];
 ---

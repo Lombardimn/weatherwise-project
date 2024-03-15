@@ -39,6 +39,7 @@ export default {
 			'heading': '5.6rem',
 			'heading2': '3.2rem',
 			'heading3': '4rem',
+			'heading4': '3rem',
 			'h1': '2rem',
 			'h2': '1.8rem',
 			'h3': '1.6rem',
@@ -78,6 +79,9 @@ export default {
 				circle2: 'circle(130% at 73% 5%)',
 				circle3: 'circle(100% at 50% 50%)',
       },
+			flex: {
+				'2': '1 1 100%'
+			},
 		}
 	},
 }
