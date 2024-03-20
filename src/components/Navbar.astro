@@ -2,7 +2,7 @@
 import Icon from "./Icon.astro"
 ---
 
-<div class="max-w-[1600px] w-full mx-auto p-4 flex items-center justify-between">
+<div class="w-full mx-auto p-6 flex items-center justify-between fixed top-0 left-0 z-10 bg-opacity-50 backdrop-blur-lg">
   <a href="/" class="logo flex items-center">
       <Icon 
         icon="logo" 
@@ -10,27 +10,27 @@ import Icon from "./Icon.astro"
         heigth='40px'
         viewBox='0 0 24 24'
       />
-    <h1 class="text-h1">WeatherWise</h1>
+    <h1 class="text-h1 md:text-[2.4rem]">WeatherWise</h1>
   </a>
 
   <!-- active -->
   <section 
-    class="search-view fixed top-0 left-0 w-full h-svh bg-surface-color text-on-surface-color clip-circle opacity-0 hidden z-[4] active:opacity-100 active:visible active:clip-circle2"
+    class="search-view fixed top-0 left-0 w-full h-svh bg-surface-color text-on-surface-color clip-circle opacity-0 hidden z-[4] active:opacity-100 active:visible active:clip-circle2 md:clip-circle4 xl:active:[all:unset] xl:active:block xl:active:relative xl:active:width-[500px] xl:active:animate-none"
     data-search-view
   >
     <article 
-      class="search-wrapper relative border-b border-solid border-outline-color before:content-[''] before:absolute before:top-1/2 before:transform before:-translate-y-1/2 before:right-4 before:w-10 before:h-10 before:border-[3px] before:border-solid before:border-on-surface-color before:rounded-full before:border-t-transparent before:animate-loading before:hidden has-[.searching]:before:block group" 
+      class="search-wrapper relative border-b border-solid border-outline-color before:content-[''] before:absolute before:top-1/2 before:transform before:-translate-y-1/2 before:right-4 before:w-10 before:h-10 before:border-[3px] before:border-solid before:border-on-surface-color before:rounded-full before:border-t-transparent before:animate-loading before:hidden has-[.searching]:before:block group xl:border-none" 
     >
       <!-- searching -->
       <input 
         type="search" 
         name="searching location"
-        class="search-field h-20 leading-[80px] ps-20 pe-4 focus:outline-none placeholder:text-on-surface-variant-2-color appearance-none"
+        class="search-field h-20 leading-[80px] ps-20 pe-4 focus:outline-none placeholder:text-on-surface-variant-2-color appearance-none xl:bg-surface-color xl:h-14 xl:rounded-[28px] xl:w-[400px]"
         placeholder="Buscar ciudad..."
         autocomplete="off"
         data-search-field
       > 
-      <div class="hidden">
+      <div class="hidden xl:block xl:absolute xl:top-1/2 xl:left-[28px] xl:transform xl:-translate-y-1/2 xl:-translate-x-1/2">
         <Icon 
           icon="search-location" 
           width='24px' 
@@ -40,7 +40,7 @@ import Icon from "./Icon.astro"
         />
       </div>
       <button 
-      class="leading-icon w-12 h-12 grid place-items-center rounded-full absolute top-1/2 left-[25px] transform -translate-y-1/2 -translate-x-1/2 bg-transparent shadow-none hover:shadow-shadow1 focus:shadow-none focus-visible:shadow-none before:content-[''] before:absolute before:inset-0 before:rounded-[inherit] before:clip-circle3 before:ease-in-out before:duration-100 hover:before:bg-white-alpha-4 focus:before:bg-white-alpha-8 focus:before:animate-ripple" 
+      class="leading-icon w-12 h-12 grid place-items-center rounded-full absolute top-1/2 left-[28px] transform -translate-y-1/2 -translate-x-1/2 bg-transparent shadow-none hover:shadow-shadow1 focus:shadow-none focus-visible:shadow-none before:content-[''] before:absolute before:inset-0 before:rounded-[inherit] before:clip-circle3 before:ease-in-out before:duration-100 hover:before:bg-white-alpha-4 focus:before:bg-white-alpha-8 focus:before:animate-ripple xl:hidden" 
       aria-label="Cerrar búsqueda"
       data-search-toggler
       >
@@ -54,8 +54,8 @@ import Icon from "./Icon.astro"
       </button>
     </article>
 
-    <article class="search-result" data-search-result>
-      <ul class="view-list pt-2 pb-4" data-search-list>
+    <article class="search-result xl:hidden" data-search-result>
+      <ul class="view-list pt-2 pb-4 lg:bg-surface-color xl:h-14 lg:rounded-[28px] xl:absolute xl:top-full xl:left-0 xl:w-full xl:max-h-[360px] xl:rounded-[0_0_28px_28px] xl:border-t-2 xl:border-solid xl:border-outline-color xl:overflow-y-overlay xl:empty:min-h-32" data-search-list>
         <li class="view-item relative h-16 flex content-start items-center gap-4 ps-4 pe-6">
           <div class="text-on-surface-variant-color">
             <Icon 
@@ -76,9 +76,9 @@ import Icon from "./Icon.astro"
     </article>
   </section>
 
-  <section class="header-actions flex items-center gap-4">
+  <section class="header-actions flex items-center gap-4 md:gap-6 justify-between">
     <button
-      class="w-16 h-16 grid place-items-center rounded-full relative hover:shadow-shadow1 focus:shadow-none focus-visible:shadow-none before:content-[''] before:absolute before:inset-0 before:rounded-[inherit] before:clip-circle3 before:ease-in-out before:duration-100 hover:before:bg-white-alpha-4 focus:before:bg-white-alpha-8 focus:before:animate-ripple"
+      class="w-16 h-16 grid place-items-center rounded-full relative hover:shadow-shadow1 focus:shadow-none focus-visible:shadow-none before:content-[''] before:absolute before:inset-0 before:rounded-[inherit] before:clip-circle3 before:ease-in-out before:duration-100 hover:before:bg-white-alpha-4 focus:before:bg-white-alpha-8 focus:before:animate-ripple xl:hidden"
       aria-label="Abrir buscador"
       data-search-toggler
     >
@@ -92,7 +92,7 @@ import Icon from "./Icon.astro"
     </button>
     <a 
       href="#/current-location" 
-      class="bg-primary-color text-on-primary-color h-16 leading-[48px] max-w-max flex items-center gap-4 rounded-[28px] relative px-3 hover:shadow-shadow1 focus:shadow-none focus-visible:shadow-none before:content-[''] before:absolute before:inset-0 before:rounded-[inherit] before:clip-circle3 before:ease-in-out before:duration-100 hover:before:bg-white-alpha-4 focus:before:bg-white-alpha-8 focus:before:animate-ripple disabled:bg-outline-color disabled:text-on-surface-variant-color disabled:cursor-not-allowed disabled:before:hidden"  
+      class="bg-primary-color text-on-primary-color h-16 leading-[48px] max-w-max flex items-center gap-4 rounded-[28px] relative px-3 hover:shadow-shadow1 focus:shadow-none focus-visible:shadow-none before:content-[''] before:absolute before:inset-0 before:rounded-[inherit] before:clip-circle3 before:ease-in-out before:duration-100 hover:before:bg-white-alpha-4 focus:before:bg-white-alpha-8 focus:before:animate-ripple disabled:bg-outline-color disabled:text-on-surface-variant-color disabled:cursor-not-allowed disabled:before:hidden md:px-4"  
       data-current-location-btn
     >
       <Icon 
@@ -102,7 +102,7 @@ import Icon from "./Icon.astro"
         viewBox='0 0 24 24'
         data-current-location-btn-icon
       />
-      <span class="font-semiBold text-h5 hidden">Ubicación actual</span>
+      <span class="font-semiBold text-h5 hidden md:block lg:text-h4">Ubicación actual</span>
     </a>
   </section>
 </div>

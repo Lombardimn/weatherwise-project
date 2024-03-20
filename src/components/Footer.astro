@@ -1,11 +1,13 @@
 ---
+import Icon from "./Icon.astro"
 
+const currentYear = new Date().getFullYear();
 ---
-<div class=" text-on-surface-variant-color text-center flex flex-row justify-between gap-x-3 gap-y-6 mt-8 me-8 pb-6 items-center">
-  <p class="body-3">
-    &copy; 2024 LombardiDev. Todos los derechos reservados.
+<div class=" text-on-surface-variant-color text-center flex flex-col justify-between gap-x-3 gap-y-6 mt-8 me-8 pb-6 items-center md:flex-row">
+  <p class="text-body3 lg:text-body">
+    &copy; {currentYear} LombardiDev. Todos los derechos reservados.
   </p>
-  <p class="body-3 flex flex-wrap justify-around items-center gap-3">
+  <p class="text-body3 flex flex-wrap justify-around items-center gap-3 lg:text-body">
     Powered by 
       <a 
         href="https://astro.build" 
@@ -13,13 +15,12 @@
         target="_blank"
         rel="noopener"
       >
-        <img 
-          src="/public/icons/header/Astro_dark.svg" 
-          alt="logo de Astro"
-          width="32"
-          height="32"
-          loading="lazy"
-          >
+        <Icon 
+          icon="astro-dark" 
+          width='32px' 
+          heigth='32px'
+          viewBox='0 0 256 366'
+        />
       </a>
     and <a 
       href="https://openweathermap.org/api"

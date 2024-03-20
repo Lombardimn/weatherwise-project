@@ -9,15 +9,20 @@ import Loading from '../components/Loading.astro'
 ---
 
 <Layout title='WeatherWise App'>
-	<aside class="[grid-area:aside] relative grid grid-cols-1 gap-3 h-full overflow-y-overlay before:content-[''] before:fixed before:bottom-0 before:w-full before:h-10 before:bg-gradient before:pointer-events-none before:z-[1]">
+	<aside class="[grid-area:aside] relative grid grid-cols-1 gap-3 h-full overflow-y-overlay before:content-[''] before:fixed before:bottom-0 before:w-full before:h-10 before:bg-gradient before:pointer-events-none before:z-[1] md:gap-1">
 		<CurrentWeather />
 		<Forecast />
 	</aside>
 	<main class="[grid-area:main]">
 		<Highlights />
+		<div class="hidden lg:block">
+			<HourlyForescast />
+		</div>
 	</main>
 	<footer class="[grid-area:footer] w-[96vw] md:w-full">
-		<HourlyForescast />
+		<div class="lg:hidden">
+			<HourlyForescast />
+		</div>
 		<Footer />
 	</footer>
 	<Loading />

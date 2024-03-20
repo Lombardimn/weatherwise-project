@@ -2,12 +2,12 @@
 import Icon from "./Icon.astro"
 ---
 
-<article class="section highlights mt-16 md:mt-0" aria-labelledby="highlights-label" data-highlights>
-  <div class="bg-surface-color text-on-surface-color rounded-[28px] p-5">
-    <h2 class="text-h2 mb-3" id ="highlight-label">Lo destacado de Hoy</h2>
-    <div class="highlight-list grid gap-5">
-      <div class="highlight-card one relative bg-black-alpha-10 text-on-surface-color rounded-2xl p-4">
-        <h3 class="text-h3 font-semiBold text-on-surface-variant-color mb-5">Índice de Calidad de Aire</h3>
+<article class="section highlights mt-16 md:mt-0 md:pt-8" aria-labelledby="highlights-label" data-highlights>
+  <div class="bg-surface-color text-on-surface-color rounded-[28px] p-5 md:p-8">
+    <h2 class="text-h2 mb-3 md:mb-4" id ="highlight-label">Lo destacado de Hoy</h2>
+    <div class="highlight-list grid gap-5 lg:grid-cols-[1fr_1fr]">
+      <div class="highlight-card one relative bg-black-alpha-10 text-on-surface-color rounded-2xl p-4 md:p-5 lg:grid lg:grid-rows-[min-content,_1fr]">
+        <h3 class="text-h3 font-semiBold text-on-surface-variant-color mb-5 lg:w-52 xl:w-full">Índice de Calidad de Aire</h3>
         <div class="wrapper flex justify-between gap-4 items-center">
           <Icon
             icon="wind-good" 
@@ -38,29 +38,29 @@ import Icon from "./Icon.astro"
           </ul>
         </div>
 
-        <span class="badge aqi-1 label-1 text-on-surface-variant-color absolute top-4 right-4 py-2 px-12 rounded-3xl font-semiBold cursor-help" title="AQI Mensaje">
+        <span class="badge aqi-1 label-1 text-on-surface-variant-color absolute top-4 right-4 py-2 px-12 rounded-3xl font-semiBold cursor-help md:top-5 md:right-5" title="AQI Mensaje">
           Bueno
         </span>
 
       </div>
 
-      <div class="card card-sm highlight-card two relative flex flex-col justify-between bg-black-alpha-10 text-on-surface-color rounded-2xl p-4">
+      <div class="card card-sm highlight-card two relative flex flex-col justify-between bg-black-alpha-10 text-on-surface-color rounded-2xl p-4 md:p-8">
         <h3 class="title-3 text-h3 font-semiBold mb-5">Amanecer & Atardecer</h3>
         <div class="card-list flex items-center content-center">
-            <div class="card-item flex items-center w-1/2 justify-center flex-wrap gap-x-8 gap-y-16">
+            <div class="card-item flex items-center w-1/2 justify-center flex-wrap gap-x-8 gap-y-16 md:gap-x-3 md:gap-y-2">
               <Icon 
                 icon="sunrise" 
-                width='60px' 
-                heigth='60px'
+                width='50px' 
+                heigth='50px'
                 viewBox='0 0 307 179'
               />
               <div>
                 <p class="label-1 text-label text-on-surface-variant-color mb-1">Amanecer</p>
-                <p class="text-h3">06.30 AM</p>
+                <p class="text-h3 lg:text-[2rem]">06.30 AM</p>
               </div>
             </div>
 
-            <div class="card-item flex items-center w-1/2 justify-center flex-wrap gap-x-8 gap-y-16">
+            <div class="card-item flex items-center w-1/2 justify-center flex-wrap gap-x-8 gap-y-16 md:gap-x-3 md:gap-y-2">
               <Icon 
                 icon="night" 
                 width='50px' 
@@ -69,13 +69,13 @@ import Icon from "./Icon.astro"
               />
               <div>
                 <p class="label-1 text-label text-on-surface-variant-color mb-1">Atardecer</p>
-                <p class="text-h3">17.54 PM</p>
+                <p class="text-h3 lg:text-[2rem]">17.54 PM</p>
               </div>
             </div>
         </div>
       </div>
 
-      <div class="card card-sm highlight-card relative bg-black-alpha-10 text-on-surface-color rounded-2xl p-4">
+      <div class="card card-sm highlight-card relative bg-black-alpha-10 text-on-surface-color rounded-2xl p-4 md:p-5 md:grid md:grid-rows-[min-content,_1fr]">
         <h3 class="title-3 text-h3 font-semiBold mb-5">Humedad</h3>
         <div class="wrapper flex justify-between gap-4 items-center">
           <div class="m-3">
@@ -90,7 +90,7 @@ import Icon from "./Icon.astro"
         </div>
       </div>
 
-      <div class="card card-sm highlight-card relative bg-black-alpha-10 text-on-surface-color rounded-2xl p-4">
+      <div class="card card-sm highlight-card relative bg-black-alpha-10 text-on-surface-color rounded-2xl p-4 md:p-5 md:grid md:grid-rows-[min-content,_1fr]">
         <h3 class="title-3 text-h3 font-semiBold mb-5">Presión</h3>
         <div class="wrapper flex justify-between gap-4 items-center">
           <div class="m-3">
@@ -106,7 +106,7 @@ import Icon from "./Icon.astro"
         </div>
       </div>
 
-      <div class="card card-sm highlight-card relative bg-black-alpha-10 text-on-surface-color rounded-2xl p-4">
+      <div class="card card-sm highlight-card relative bg-black-alpha-10 text-on-surface-color rounded-2xl p-4 md:p-5 md:grid md:grid-rows-[min-content,_1fr]">
         <h3 class="title-3 text-h3 font-semiBold mb-5">Visibilidad</h3>
         <div class="wrapper flex justify-between gap-4 items-center">
           <div class="m-3">
@@ -121,7 +121,7 @@ import Icon from "./Icon.astro"
         </div>
       </div>
 
-      <div class="card card-sm highlight-card relative bg-black-alpha-10 text-on-surface-color rounded-2xl p-4">
+      <div class="card card-sm highlight-card relative bg-black-alpha-10 text-on-surface-color rounded-2xl p-4 md:p-5 md:grid md:grid-rows-[min-content,_1fr]">
         <h3 class="title-3 text-h3 font-semiBold mb-5">Sensación térmica</h3>
         <div class="wrapper flex justify-between gap-4 items-center">
           <div class="m-3">

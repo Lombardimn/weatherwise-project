@@ -228,6 +228,10 @@ const { title, description } = Astro.props;
 		font-size: 0.5em;
 	}
 
+	svg {
+		display: inline-block;
+	}
+
 	html {
 		font-family: var(--ff-circular);
 		font-size: 10px;
@@ -262,7 +266,7 @@ const { title, description } = Astro.props;
 	}
 
 		/*
-		** MATERIAL ICON 
+		** FONTS
 		*/
 
 		@font-face {
@@ -304,54 +308,4 @@ const { title, description } = Astro.props;
 		font-style: normal;
 		font-display: swap;
 	}
-
-	/*
-	** REUSED STYLES
-	*/
-
-	/*container max-w-[1600px] w-full mx-auto p-4 */
-
-	/*icon-btn w-11 h-11 grid place-items-center rounded-full */
-
-	/*has-state relative */
-
-	/*has-state hover:shadow-shadow1 */
-
-	/*has-state:is(:focus, :focus-visible) focus:shadow-none focus-visible:shadow-none */
-
-	/*has-state::before before:content-[''] before:absolute before:inset-0 before:rounded-[inherit] before:clip-circle3 before:ease-in-out before:duration-100 */
-
-	/*has-state:hover::before hover:before:bg-white-alpha-4 */
-
-	/*has-state:is(:focus, :focus-visible)::before focus:before:bg-white-alpha-8 focus:before:animate-ripple */
-
-	/*btn-primary bg-primary-color text-on-primary-color h-12 leading-[48px] max-w-max flex items-center gap-4 px-6 rounded-[28px] */
-
-	/*btn-primary .span font-semiBold */
-
-	/*btn-primary[disabled] disabled:bg-outline-color disabled:text-on-surface-variant-color disabled:cursor-not-allowed  */
-
-	/*btn-primary[disabled]::before disabled:before:hidden */
-
-	/*card bg-surface-color text-on-surface-color */
-
-	/*card-lg rounded-[28px] p-5 */
-
-	/*card-sm rounded-2xl p-4 */
-
-	/*heading text-white- text-heading leading-tight */
-
-	/*title-2 text-h2 */
-
-	/*title-3 text-h3 font-semiBold */
-
-	/*body-1 text-body */
-
-	/*body-2 text-body2 font-semiBold */
-
-	/*body-3 text-body3 */
-
-	/*label-1 text-label */
-
-	/*label-2 text-label2 */
 </style>

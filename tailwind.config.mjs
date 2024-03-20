@@ -78,6 +78,7 @@ export default {
         circle: 'circle(4% at calc(100% - 102px) 5%)',
 				circle2: 'circle(130% at 73% 5%)',
 				circle3: 'circle(100% at 50% 50%)',
+				circle4: 'circle(100% at calc(100% - 273px) 6%)',
       },
 			flex: {
 				'2': '1 1 100%'

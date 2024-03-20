@@ -1,11 +1,26 @@
 ---
 import Icon from "./Icon.astro"
 ---
-<article class="section hourly-forecast" aria-label="hourly-forecast" data-hourly-forecast>
-  <h2 class="title-2 text-h2 mb-3">A partir de</h2>
-    <div class="slider-container overflow-x-auto -mx-4">
-      <ul class="slider-list flex gap-3 before:content-[''] before:min-w-1 after:content-[''] after:min-w-1 first:mb-4" data-temp>
-        <li class="slider-item min-w-28 flex flex-2">
+<article class="section hourly-forecast lg:mt-12" aria-label="hourly-forecast" data-hourly-forecast>
+  <h2 class="title-2 text-h2 mb-3 md:mb-4 md:pt-8">A partir de</h2>
+    <div class="slider-container overflow-x-auto -mx-4 md:mx-0">
+      <ul class="slider-list flex gap-3 before:content-[''] before:min-w-1 after:content-[''] after:min-w-1 first:mb-4 md:before:content-none md:grid md:grid-cols-[repeat(7,_1fr)] md:gap-12" data-temp>
+        <li class="slider-item min-w-28 flex flex-2 md:flex-none md:grid">
+          <div class="card card-sm slider-card bg-surface-color text-on-surface-color rounded-2xl p-4 text-center">
+            <p class="body-3 text-body3"> 15.00 PM</p>
+            <div class="weather-icon mx-auto my-3">
+              <Icon
+                icon="sunny" 
+                width= '48px'
+                heigth= '48px'
+                viewBox='0 0 404 328'
+              />
+            </div>
+            <p class="body-3 text-body3">25&deg;</p>
+          </div>
+        </li>
+
+        <li class="slider-item min-w-28 flex flex-2 md:flex-none md:grid">
           <div class="card card-sm slider-card bg-surface-color text-on-surface-color rounded-2xl p-4 text-center">
             <p class="body-3 text-body3"> 15.00 PM</p>
             <div class="weather-icon mx-auto my-3">
@@ -20,7 +35,7 @@ import Icon from "./Icon.astro"
           </div>
         </li>
 
-        <li class="slider-item min-w-28 flex flex-2">
+        <li class="slider-item min-w-28 flex flex-2 md:flex-none md:grid">
           <div class="card card-sm slider-card bg-surface-color text-on-surface-color rounded-2xl p-4 text-center">
             <p class="body-3 text-body3"> 15.00 PM</p>
             <div class="weather-icon mx-auto my-3">
@@ -35,7 +50,7 @@ import Icon from "./Icon.astro"
           </div>
         </li>
 
-        <li class="slider-item min-w-28 flex flex-2">
+        <li class="slider-item min-w-28 flex flex-2 md:flex-none md:grid">
           <div class="card card-sm slider-card bg-surface-color text-on-surface-color rounded-2xl p-4 text-center">
             <p class="body-3 text-body3"> 15.00 PM</p>
             <div class="weather-icon mx-auto my-3">
@@ -50,7 +65,7 @@ import Icon from "./Icon.astro"
           </div>
         </li>
 
-        <li class="slider-item min-w-28 flex flex-2">
+        <li class="slider-item min-w-28 flex flex-2 md:flex-none md:grid">
           <div class="card card-sm slider-card bg-surface-color text-on-surface-color rounded-2xl p-4 text-center">
             <p class="body-3 text-body3"> 15.00 PM</p>
             <div class="weather-icon mx-auto my-3">
@@ -65,8 +80,8 @@ import Icon from "./Icon.astro"
           </div>
         </li>
 
-        <li class="slider-item min-w-28 flex flex-2">
-          <div class="card card-sm slider-card bg-surface-color text-on-surface-color rounded-2xl p-4 text-center">
+        <li class="slider-item min-w-28 flex flex-2 md:flex-none md:grid">
+          <div class="card card-sm slider-card bg-surface-color text-on-surface-color rounded-2xl p-4 text-center md:p-5 md:grid md:grid-rows-[min-content,_1fr]">
             <p class="body-3 text-body3"> 15.00 PM</p>
             <div class="weather-icon mx-auto my-3">
               <Icon
@@ -80,23 +95,8 @@ import Icon from "./Icon.astro"
           </div>
         </li>
 
-        <li class="slider-item min-w-28 flex flex-2">
-          <div class="card card-sm slider-card bg-surface-color text-on-surface-color rounded-2xl p-4 text-center">
-            <p class="body-3 text-body3"> 15.00 PM</p>
-            <div class="weather-icon mx-auto my-3">
-              <Icon
-                icon="sunny" 
-                width='48px' 
-                heigth='48px'
-                viewBox='0 0 404 328'
-              />
-            </div>
-            <p class="body-3 text-body3">25&deg;</p>
-          </div>
-        </li>
-
-        <li class="slider-item min-w-28 flex flex-2">
-          <div class="card card-sm slider-card bg-surface-color text-on-surface-color rounded-2xl p-4 text-center">
+        <li class="slider-item min-w-28 flex flex-2 md:flex-none md:grid">
+          <div class="card card-sm slider-card bg-surface-color text-on-surface-color rounded-2xl p-4 text-center md:p-5 md:grid md:grid-rows-[min-content,_1fr]">
             <p class="body-3 text-body3"> 15.00 PM</p>
             <div class="weather-icon mx-auto my-3">
               <Icon
@@ -111,9 +111,9 @@ import Icon from "./Icon.astro"
         </li>
       </ul>
 
-      <ul class="slider-list flex gap-3 before:content-[''] before:min-w-1 after:content-[''] after:min-w-1 first:mb-4" data-wind>
-        <li class="slider-item min-w-28 flex flex-2">
-          <div class="card card-sm slider-card bg-surface-color text-on-surface-color rounded-2xl p-4 text-center">
+      <ul class="slider-list flex gap-3 before:content-[''] before:min-w-1 after:content-[''] after:min-w-1 first:mb-4 md:before:content-none md:grid md:grid-cols-[repeat(7,_1fr)] md:gap-12" data-wind>
+        <li class="slider-item min-w-28 flex flex-2 md:flex-none md:grid">
+          <div class="card card-sm slider-card bg-surface-color text-on-surface-color rounded-2xl p-4 text-center md:p-5 md:grid md:grid-rows-[min-content,_1fr]">
             <p class="body-3 text-body3"> 15.00 PM</p>
             <div class="weather-icon mx-auto my-3">
               <Icon
@@ -127,8 +127,8 @@ import Icon from "./Icon.astro"
           </div>
         </li>
 
-        <li class="slider-item min-w-28 flex flex-2">
-          <div class="card card-sm slider-card bg-surface-color text-on-surface-color rounded-2xl p-4 text-center">
+        <li class="slider-item min-w-28 flex flex-2 md:flex-none md:grid">
+          <div class="card card-sm slider-card bg-surface-color text-on-surface-color rounded-2xl p-4 text-center md:p-5 md:grid md:grid-rows-[min-content,_1fr]">
             <p class="body-3 text-body3"> 15.00 PM</p>
             <div class="weather-icon mx-auto my-3">
               <Icon
@@ -142,8 +142,8 @@ import Icon from "./Icon.astro"
           </div>
         </li>
 
-        <li class="slider-item min-w-28 flex flex-2">
-          <div class="card card-sm slider-card bg-surface-color text-on-surface-color rounded-2xl p-4 text-center">
+        <li class="slider-item min-w-28 flex flex-2 md:flex-none md:grid">
+          <div class="card card-sm slider-card bg-surface-color text-on-surface-color rounded-2xl p-4 text-center md:p-5 md:grid md:grid-rows-[min-content,_1fr]">
             <p class="body-3 text-body3"> 15.00 PM</p>
             <div class="weather-icon mx-auto my-3">
               <Icon
@@ -157,8 +157,8 @@ import Icon from "./Icon.astro"
           </div>
         </li>
 
-        <li class="slider-item min-w-28 flex flex-2">
-          <div class="card card-sm slider-card bg-surface-color text-on-surface-color rounded-2xl p-4 text-center">
+        <li class="slider-item min-w-28 flex flex-2 md:flex-none md:grid">
+          <div class="card card-sm slider-card bg-surface-color text-on-surface-color rounded-2xl p-4 text-center md:p-5 md:grid md:grid-rows-[min-content,_1fr]">
             <p class="body-3 text-body3"> 15.00 PM</p>
             <div class="weather-icon mx-auto my-3">
               <Icon
@@ -172,8 +172,8 @@ import Icon from "./Icon.astro"
           </div>
         </li>
 
-        <li class="slider-item min-w-28 flex flex-2">
-          <div class="card card-sm slider-card bg-surface-color text-on-surface-color rounded-2xl p-4 text-center">
+        <li class="slider-item min-w-28 flex flex-2 md:flex-none md:grid">
+          <div class="card card-sm slider-card bg-surface-color text-on-surface-color rounded-2xl p-4 text-center md:p-5 md:grid md:grid-rows-[min-content,_1fr]">
             <p class="body-3 text-body3"> 15.00 PM</p>
             <div class="weather-icon mx-auto my-3">
               <Icon
@@ -187,8 +187,8 @@ import Icon from "./Icon.astro"
           </div>
         </li>
 
-        <li class="slider-item min-w-28 flex flex-2">
-          <div class="card card-sm slider-card bg-surface-color text-on-surface-color rounded-2xl p-4 text-center">
+        <li class="slider-item min-w-28 flex flex-2 md:flex-none md:grid">
+          <div class="card card-sm slider-card bg-surface-color text-on-surface-color rounded-2xl p-4 text-center md:p-5 md:grid md:grid-rows-[min-content,_1fr]">
             <p class="body-3 text-body3"> 15.00 PM</p>
             <div class="weather-icon mx-auto my-3">
               <Icon
@@ -202,8 +202,8 @@ import Icon from "./Icon.astro"
           </div>
         </li>
 
-        <li class="slider-item min-w-28 flex flex-2">
-          <div class="card card-sm slider-card bg-surface-color text-on-surface-color rounded-2xl p-4 text-center">
+        <li class="slider-item min-w-28 flex flex-2 md:flex-none md:grid">
+          <div class="card card-sm slider-card bg-surface-color text-on-surface-color rounded-2xl p-4 text-center md:p-5 md:grid md:grid-rows-[min-content,_1fr]">
             <p class="body-3 text-body3"> 15.00 PM</p>
             <div class="weather-icon mx-auto my-3">
               <Icon
