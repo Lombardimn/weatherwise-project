@@ -15,7 +15,7 @@ import Icon from "./Icon.astro"
 
   <!-- active -->
   <section 
-    class="search-view fixed top-0 left-0 w-full h-svh bg-surface-color text-on-surface-color clip-circle opacity-0 hidden z-[4] active:opacity-100 active:visible active:clip-circle2 md:clip-circle4 xl:active:[all:unset] xl:active:block xl:active:relative xl:active:width-[500px] xl:active:animate-none"
+    class="search-view fixed top-0 left-0 w-full h-svh bg-surface-color text-on-surface-color clip-circle opacity-0 hidden z-[2] active:opacity-100 active:visible active:clip-circle2 md:clip-circle4 xl:active:[all:unset] xl:active:block xl:active:relative xl:active:width-[500px] xl:active:animate-none"
     data-search-view
   >
     <article 
@@ -106,3 +106,34 @@ import Icon from "./Icon.astro"
     </a>
   </section>
 </div>
+
+<script>
+  /**
+ * Toggle search in mobile device
+ */
+
+const searchView = document.querySelector("[data-search-view]") as HTMLElement | null;
+const searchTogglers = document.querySelectorAll("[data-search-toggler]") as NodeListOf<HTMLElement>
+
+const toggleSearch = () => {
+  if (searchView) {
+    if (searchView.classList.contains("active")) {
+      searchView.classList.remove("active")
+      searchView.classList.toggle("hidden")
+      searchView.classList.toggle("opacity-0")
+    } else {
+      searchView.classList.toggle("active")
+      searchView.classList.remove("hidden","opacity-0")
+    }
+  }
+}
+
+const addEventOnElement = (element: HTMLElement, event: string, handler: () => void) => {
+  element.addEventListener(event, handler)
+}
+
+searchTogglers.forEach((element: HTMLElement) => {
+  addEventOnElement(element, "click", toggleSearch)
+})
+
+</script>
