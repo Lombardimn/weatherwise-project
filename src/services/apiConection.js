@@ -6,7 +6,8 @@
   * @param {function} callback callback
 */
 
-import {API_KEY} from '../utils/.env'
+// import {API_KEY} from '../utils/.env'
+const API_KEY = '393f2ac20fd6442e4d1af2ec5c83d52a' 
 
 export const fechData = function(URL, callback) {
   fetch(`${URL}&appid=${API_KEY}`)
