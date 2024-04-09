@@ -1,5 +1,4 @@
 ---
-import type { HTMLAttributes } from 'astro/types';
 import { iconPaths } from '../utils/iconPaths';
 
 interface Props {
@@ -10,6 +9,7 @@ interface Props {
     viewBox?: string,
     transform?: string,
     loading?: string,
+    alt?: string,
 }
 
 const { 
@@ -19,7 +19,8 @@ const {
     width,
     viewBox,
     transform,
-    loading = 'lazy', 
+    alt,
+    loading = 'lazy'
 } = Astro.props;
 const iconPath = iconPaths[icon];
 ---
@@ -33,6 +34,7 @@ const iconPath = iconPaths[icon];
     stroke="color"
     fill="none"
     transform={transform}
+    aria-label={alt}
 >
     <g set:html={iconPath} />
 </svg>

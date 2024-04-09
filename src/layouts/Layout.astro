@@ -27,6 +27,8 @@ const { title, description } = Astro.props;
 	</body>
 </html>
 
+<script src="../services/app-api"></script>
+
 <style>
 
 	#app {
@@ -263,6 +265,13 @@ const { title, description } = Astro.props;
 		background-color: var(--white-alpha-8);
 		border-radius: var(--br-pill);
 
+	}
+
+	.fade-in { animation: fade-in 1000ms ease forwards;}
+
+	@keyframes fade-in {
+		0% { opacity: 0; }
+		100% { opacity: 1; }
 	}
 
 		/*

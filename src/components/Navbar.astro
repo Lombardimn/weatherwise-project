@@ -13,7 +13,6 @@ import Icon from "./Icon.astro"
     <h1 class="text-h1 md:text-[2.4rem]">WeatherWise</h1>
   </a>
 
-  <!-- active -->
   <section 
     class="search-view fixed top-0 left-0 w-full h-svh bg-surface-color text-on-surface-color clip-circle opacity-0 hidden z-[2] active:opacity-100 active:visible active:clip-circle2 md:clip-circle4 xl:active:[all:unset] xl:active:block xl:active:relative xl:active:width-[500px] xl:active:animate-none"
     data-search-view
@@ -21,7 +20,6 @@ import Icon from "./Icon.astro"
     <article 
       class="search-wrapper relative border-b border-solid border-outline-color before:content-[''] before:absolute before:top-1/2 before:transform before:-translate-y-1/2 before:right-4 before:w-10 before:h-10 before:border-[3px] before:border-solid before:border-on-surface-color before:rounded-full before:border-t-transparent before:animate-loading before:hidden has-[.searching]:before:block group xl:border-none" 
     >
-      <!-- searching -->
       <input 
         type="search" 
         name="searching location"
@@ -87,97 +85,3 @@ import Icon from "./Icon.astro"
     </a>
   </section>
 </div>
-
-<script>
-  import { fechData, url } from "../services/apiConection";
-  import * as module from "../services/module";
-
-  /**
-   * Toggle search in mobile device
-   */
-
-  const searchView = document.querySelector("[data-search-view]") as HTMLElement | null;
-  const searchTogglers = document.querySelectorAll("[data-search-toggler]") as NodeListOf<HTMLElement>
-
-  const toggleSearch = () => {
-    if (searchView) {
-      if (searchView.classList.contains("active")) {
-        searchView.classList.remove("active")
-        searchView.classList.toggle("hidden")
-        searchView.classList.toggle("opacity-0")
-      } else {
-        searchView.classList.toggle("active")
-        searchView.classList.remove("hidden","opacity-0")
-      }
-    }
-  }
-
-  const addEventOnElement = (element: HTMLElement, event: string, handler: () => void) => {
-    element.addEventListener(event, handler)
-  }
-
-  searchTogglers.forEach((element: HTMLElement) => {
-    addEventOnElement(element, "click", toggleSearch)
-  })
-
-  /**
-   * Search integration
-   */
-
-  const searchField = document.querySelector<HTMLInputElement>("[data-search-field]")
-  const searchResult = document.querySelector("[data-search-result]")
-
-  let searchTimeout = null
-  const searchTimeoutDuration = 500
-
-  searchField.addEventListener("input", event => {
-    searchTimeout ?? clearTimeout(searchTimeout)
-
-    if (!searchField.value) {
-      searchResult.classList.remove("active")
-      searchResult.innerHTML = ""
-      searchField.classList.remove("searching")
-    } else {
-      searchField.classList.add("searching")
-    }
-
-    if (searchField.value) {
-      searchTimeout = setTimeout(() => {
-        fechData(url.geo(searchField.value), function (locations) {
-          searchField.classList.remove("searching")
-          searchResult.classList.add("active")
-          searchResult.innerHTML = `
-          <ul class="view-list pt-2 pb-4 lg:bg-surface-color xl:h-14 lg:rounded-[28px] xl:absolute xl:top-full xl:left-0 xl:w-full xl:max-h-[360px] xl:rounded-[0_0_28px_28px] xl:border-t-2 xl:border-solid xl:border-outline-color xl:overflow-y-overlay xl:empty:min-h-32" data-search-list></ul>`
-
-          const /** {NodeList} | [] */ items = []
-
-          for (const {name, lat, lon, country, state} of locations) {
-            const searchItem = document.createElement("li")
-            searchItem.classList.add('view-item', 'relative', 'h-16', 'flex', 'content-start', 'items-center', 'gap-4', 'ps-4', 'pe-6')
-            searchItem.innerHTML = `
-              <div class="text-on-surface-variant-color">
-                <Icon 
-                icon="pin-location" 
-                width='36px' 
-                heigth='36px' 
-                viewBox='0 0 24 24'
-                data-search-pin-icon
-                />
-              </div>
-              <div>
-                <p class="item-title">${name}</p>
-                <p class="label-2 item-subtitle text-on-surface-variant-color">${state || ""}, ${country}</p>
-              </div>
-              <a href="#/weather?lat=${lat}&lon=${lon}" class="item-link absolute inset-0 shadow-none hover:shadow-shadow1 focus:shadow-none focus-visible:shadow-none before:content-[''] before:absolute before:inset-0 before:rounded-[inherit] before:clip-circle3 before:ease-in-out before:duration-100 hover:before:bg-white-alpha-4 focus:before:bg-white-alpha-8 focus:before:animate-ripple" data-search-toggler arial-label="${name} weather"></a>`
-
-            searchResult.querySelector('[data-search-list]').appendChild(searchItem)
-            items.push(searchItem.querySelector('[data-search-toggler]'))
-          }
-        })
-      }, searchTimeoutDuration)
-    }
-  })
-
-  const container = document.querySelector("[data-container]")
-
-</script>

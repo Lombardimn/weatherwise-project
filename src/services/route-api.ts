@@ -1,24 +1,27 @@
-'use strict'
+import { updateWeather } from './app-api'
 
-import {updateWheater, error404} from '../services/app.js'
+const defaultLocation =  '#/weather?lat=-31.4135&lon=-64.18105'
 
-const defaultLocation = '#/weather?lat=-31.4135&lon=-64.18105'
 
+/**
+ * Get current location
+ */
 const currentLocation = () => {
   window.navigator.geolocation.getCurrentPosition(
     resp => {
       const {latitude, longitude} = resp.coords
-      updateWheater(`lat=${latitude}`,`lon=${longitude}`)
-  }, err => {
-    window.location.hash = defaultLocation
-  }
+      updateWeather(latitude,longitude)
+    }, 
+    err => {
+      window.location.hash = defaultLocation
+    }
   )
 }
 
 /**
  * @param {string} query Search query: "Córdoba"
  */
-const searchedLocation = query => updateWheater(...query.split('&'))
+const searchedLocation = query => updateWeather.apply(null, query.split('&'))
 
 const routes = new Map([
   ['/current-location', currentLocation],
@@ -30,7 +33,12 @@ const checkHash = () => {
 
   const [route, query] = requestURL.includes ? requestURL.split('?') : [requestURL]
 
-  routes.get(route) ? routes.get(route)(query) : error404()
+  routes.get(route) 
+    ? routes.get(route)(query) 
+    : new Response(null, {
+      status: 404,
+      statusText: 'No encontrado'
+      });
 }
 
 window.addEventListener('hashchange', checkHash)
