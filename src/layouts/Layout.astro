@@ -13,12 +13,14 @@ const { title, description } = Astro.props;
 <!doctype html>
 <html lang="es">
 	<head>
-		<MainHead title={title} description={description} />
+		<MainHead title={title}	description={description} />
 	</head>
 	<body>
 		<div 
+			class=" relative p-4 gap-7 before:content-[''] before:fixed before:left-0 before:bottom-0 before:w-full before:h-10 before:bg-gradient md:relative md:h-screen md:p-8 md:gap-14 md:before:content-[''] md:before:fixed md:before:left-0 md:before:bottom-0 md:before:w-full md:before:h-10 md:bg-gradient header h-[calc(100svh-80px)] overflow-hidden"
 			id="app" 
-			class=" relative p-4 gap-7 before:content-[''] before:fixed before:left-0 before:bottom-0 before:w-full before:h-10 before:bg-gradient md:relative md:h-screen md:p-8 md:gap-14 md:before:content-[''] md:before:fixed md:before:left-0 md:before:bottom-0 md:before:w-full md:before:h-10 md:bg-gradient header h-[calc(100svh-80px)] overflow-hidden">
+			data-app
+			>
 			<header class="[grid-area:header]">
 				<Navbar />
 			</header>

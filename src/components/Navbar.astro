@@ -20,13 +20,13 @@ import Icon from "./Icon.astro"
     <article 
       class="search-wrapper relative border-b border-solid border-outline-color before:content-[''] before:absolute before:top-1/2 before:transform before:-translate-y-1/2 before:right-4 before:w-10 before:h-10 before:border-[3px] before:border-solid before:border-on-surface-color before:rounded-full before:border-t-transparent before:animate-loading before:hidden has-[.searching]:before:block group xl:border-none" 
     >
-      <input 
-        type="search" 
-        name="searching location"
+      <input
         class="search-field h-20 leading-[80px] ps-20 pe-4 focus:outline-none placeholder:text-on-surface-variant-2-color appearance-none xl:bg-surface-color xl:h-14 xl:rounded-[28px] xl:w-[400px]"
+        name="searching location"
+        data-search-field
+        type="search"
         placeholder="Buscar ciudad..."
         autocomplete="off"
-        data-search-field
       > 
       <div class="hidden xl:block xl:absolute xl:top-1/2 xl:left-[28px] xl:transform xl:-translate-y-1/2 xl:-translate-x-1/2">
         <Icon 
@@ -39,8 +39,8 @@ import Icon from "./Icon.astro"
       </div>
       <button 
       class="leading-icon w-12 h-12 grid place-items-center rounded-full absolute top-1/2 left-[28px] transform -translate-y-1/2 -translate-x-1/2 bg-transparent shadow-none hover:shadow-shadow1 focus:shadow-none focus-visible:shadow-none before:content-[''] before:absolute before:inset-0 before:rounded-[inherit] before:clip-circle3 before:ease-in-out before:duration-100 hover:before:bg-white-alpha-4 focus:before:bg-white-alpha-8 focus:before:animate-ripple xl:hidden" 
-      aria-label="Cerrar búsqueda"
       data-search-toggler
+      aria-label="Cerrar búsqueda"
       >
         <Icon 
           icon="arrow-back" 
@@ -58,8 +58,8 @@ import Icon from "./Icon.astro"
   <section class="header-actions flex items-center gap-4 md:gap-6 justify-between">
     <button
       class="w-16 h-16 grid place-items-center rounded-full relative hover:shadow-shadow1 focus:shadow-none focus-visible:shadow-none before:content-[''] before:absolute before:inset-0 before:rounded-[inherit] before:clip-circle3 before:ease-in-out before:duration-100 hover:before:bg-white-alpha-4 focus:before:bg-white-alpha-8 focus:before:animate-ripple xl:hidden"
-      aria-label="Abrir buscador"
       data-search-toggler
+      aria-label="Abrir buscador"
     >
       <Icon 
         icon="search" 
@@ -69,10 +69,10 @@ import Icon from "./Icon.astro"
         data-search-toggler-icon
       />
     </button>
-    <a 
-      href="#/current-location" 
+    <a
       class="bg-primary-color text-on-primary-color h-16 leading-[48px] max-w-max flex items-center gap-4 rounded-[28px] relative px-3 hover:shadow-shadow1 focus:shadow-none focus-visible:shadow-none before:content-[''] before:absolute before:inset-0 before:rounded-[inherit] before:clip-circle3 before:ease-in-out before:duration-100 hover:before:bg-white-alpha-4 focus:before:bg-white-alpha-8 focus:before:animate-ripple disabled:bg-outline-color disabled:text-on-surface-variant-color disabled:cursor-not-allowed disabled:before:hidden md:px-4"  
       data-current-location-btn
+      href="#/current-location"
     >
       <Icon 
         icon="location" 

@@ -1,7 +1,11 @@
 ---
 import Icon from "./Icon.astro"
 ---
-<article class="section hourly-forecast lg:mt-12" aria-label="hourly-forecast" data-hourly-forecast>
+<article 
+  class="section hourly-forecast lg:mt-12"
+  data-hourly-forecast
+  aria-label="hourly-forecast"
+  >
   <h2 class="title-2 text-h2 mb-3 md:mb-4 md:pt-8">A partir de</h2>
     <div class="slider-container overflow-x-auto -mx-4 md:mx-0">
       <ul class="slider-list flex gap-3 before:content-[''] before:min-w-1 after:content-[''] after:min-w-1 first:mb-4 md:before:content-none md:grid md:grid-cols-[repeat(7,_1fr)] md:gap-12" data-temp>

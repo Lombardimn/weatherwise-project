@@ -27,7 +27,7 @@ export const fetchData = async (API_PATH: string, callback: Function) => {
 }
 
 export const URL_PATH = {
-  WHEATER(latitude: number, longitude: number) {
+  WEATHER(latitude: number, longitude: number) {
     return `weather?lat=${latitude}&lon=${longitude}`
   },
   FORECAST(latitude: number, longitude: number) {
