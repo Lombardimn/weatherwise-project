@@ -1,5 +1,18 @@
 import { fetchData, URL_PATH } from "./data-api"
 import * as module from "./module-api"
+import { iconPaths } from '../utils/iconPaths';
+import { translateDescription } from "./traduction-api";
+
+interface Props {
+  icon: keyof typeof iconPaths;
+  color?: string;
+  width?: string;
+  height?: string;
+  viewBox?: string;
+  transform?: string;
+  loading?: string;
+  alt?: string;
+}
 
 /**
  * Add event listener on multiple elements
@@ -7,7 +20,7 @@ import * as module from "./module-api"
  * @param eventType Event type example: 'click'
  * @param callback callback function
  */
-const addEventOnElement = function (elements: NodeListOf<HTMLElement>, eventType: string, callback: () => void) {
+const addEventOnElement = function (elements: NodeListOf<HTMLElement> | HTMLElement[], eventType: string, callback: () => void) {
   for (const element of elements) element.addEventListener(eventType, callback)
 }
 
@@ -33,16 +46,8 @@ let searchTimeout = null
  */
 
 const toggleSearch = () => {
-  if (searchView) {
-    if (searchView.classList.contains("active")) {
-      searchView.classList.remove("active")
-      searchView.classList.toggle("hidden")
-      searchView.classList.toggle("opacity-0")
-    } else {
-      searchView.classList.toggle("active")
-      searchView.classList.remove("hidden","opacity-0")
-    }
-  }
+    searchView.classList.toggle("hidden")
+    searchView.classList.toggle("opacity-0")
 }
 addEventOnElement(searchTogglers, "click", toggleSearch)
 
@@ -94,9 +99,7 @@ searchField.addEventListener("input", event => {
           items.push(searchItem.querySelector('[data-search-toggler]'))
         }
 
-        const nodeListOfElements = document.querySelectorAll<HTMLElement>('[data-search-toggler]');
-
-        addEventOnElement(nodeListOfElements, "click", function () {
+        addEventOnElement(items, "click", function () {
           toggleSearch()
           searchResults.classList.remove("active")
         })
@@ -111,81 +114,123 @@ searchField.addEventListener("input", event => {
  * @param longitude number
  */
 export const updateWeather = (latitude: number, longitude: number): void => {
-  loading.classList.remove('hidden')
-  loading.classList.add('flex')
-  console.log(loading, 'aqui se debio haber aplicado las clases hidden y flex')
-  if (container) {
-    container.style.overflowY = 'hidden'
-  }
-  container?.classList.contains('fade-in') ?? container?.classList.remove('fade-in')
+  // loading.classList.add('flex')
+  // loading.classList.toggle('hidden')
+  
+  // container.style.overflowY = 'hidden'
+  container.classList.contains('fade-in') ?? container.classList.remove('fade-in')
 
   currentWeatherSection.innerHTML = ''
-  highlightSection.innerHTML = ''
-  forecastSection.innerHTML = ''
-  hourlySection.innerHTML = ''
+  // highlightSection.innerHTML = ''
+  // forecastSection.innerHTML = ''
+  // hourlySection.innerHTML = ''
 
   if (window.location.hash === '#/current-location') {
-    currentLocationBtn.setAttribute('disabled', '')
-    currentLocationBtn.classList.add('disabled')
+    if (currentLocationBtn) {
+      currentLocationBtn.classList.add('disabled')
+      currentLocationBtn.setAttribute('aria-disabled', 'true');
+      currentLocationBtn.setAttribute('tabindex', '-1');
+    }
   } else {
-    currentLocationBtn.removeAttribute('disabled')
-    currentLocationBtn.classList.remove('disabled')
+    if (currentLocationBtn) {
+      currentLocationBtn.classList.remove('disabled')
+      currentLocationBtn.removeAttribute('aria-disabled');
+      currentLocationBtn.removeAttribute('tabindex');
+    }
   }
 
   /**
    * Current weather section
    */
   
-  fetchData(URL_PATH.WEATHER(latitude, longitude), function (data) {
+  fetchData(URL_PATH.WEATHER(latitude, longitude), function (currentWeather) {
     const {
       weather, 
-      DU: dateUnix, 
+      dt: dateUnix, 
       sys: { sunrise: sunriseUnixUTC, sunset: sunsetUnixUTC }, 
       main: { temp, feels_like, temp_min, temp_max, pressure, humidity },
       visibility,
       timezone
-    } = data
+    } = currentWeather
+    console.log(currentWeather)
+    const [{icon, id}] = weather
 
-    const [{description, icon}] = weather
+    /**
+     * Translation description
+     */
+    const translation = translateDescription(id);
+
     const card = document.createElement('div')
     card.classList.add('bg-surface-color', 'text-on-surface-color', 'rounded-[28px]', 'p-5')
+
+    const iconContainer = document.createElement('div');
+    const iconElement = document.createElement('svg')
+
+    iconElement.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+    iconElement.setAttribute('width', '140px');
+    iconElement.setAttribute('height', '140px');
+    iconElement.setAttribute('viewBox', '0 0 404 328');
+    iconElement.setAttribute('aria-hidden', 'true');
+    iconElement.setAttribute('stroke', 'color');
+    iconElement.setAttribute('fill', 'none');
+    iconElement.innerHTML = `<g set:html="${iconPaths[icon]}" />`;
+
+    iconContainer.appendChild(iconElement);
+    card.appendChild(iconContainer);
+
     card.innerHTML = `
       <h2 class="text-h2 md:mb-4">Actual</h2>
       <div class="mb-3 flex gap-2 items-center">
-        <p class="text-white text-heading leading-tight">
-          ${parseInt(temp)}&deg;<sup>C</sup>
-        </p>
-        <Icon
-          icon=${icon} 
-          width='140px' 
-          heigth='140px'
-          viewBox='0 0 404 328'
-        />
+          <p class="text-white text-heading leading-tight">
+              ${parseInt(temp)}&deg;<sup>C</sup>
+          </p>
+          <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="140px"
+              height="140px"
+              viewBox="0 0 404 328"
+              aria-hidden="true"
+              stroke="color"
+              fill="none"
+          >
+              <g set:html="${iconPaths[icon]}" />
+          </svg>
       </div>
-      <p class="text-body3 capitalize">${description}</p>
+      <p class="text-body3 capitalize">${translation}</p>
 
       <ul class="mt-4 pt-4 border-t-[1px] border-solid border-outline-color">
-        <li class="flex items-center gap-2 mb-3 text-on-surface-color">
-          <Icon 
-          icon="calendar"
-          width='24px' 
-          heigth='24px'
-          viewBox='0 0 24 24'
-        />
-          <p class="text-h3 font-semiBold text-on-surface-variant-color">${module.getDate(dateUnix, timezone)}</p>
-        </li>
+          <li class="flex items-center gap-2 mb-3 text-on-surface-color">
+              <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24px"
+                  height="24px"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                  stroke="color"
+                  fill="none"
+              >
+                  <g set:html="${iconPaths['calendar']}" />
+              </svg>
+              <p class="text-h3 font-semiBold text-on-surface-variant-color">${module.getDate(dateUnix, timezone)}</p>
+          </li>
 
-        <li class="flex items-center gap-2 text-on-surface-color">
-          <Icon 
-            icon="pin-location" 
-            width='36px' 
-            heigth='36px' 
-            viewBox='0 0 24 24'
-          />
-          <p class="text-h3 font-semiBold text-on-surface-variant-color" data-location></p>
-        </li>
+          <li class="flex items-center gap-2 text-on-surface-color">
+              <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="36px"
+                  height="36px"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                  stroke="color"
+                  fill="none"
+              >
+                  <g set:html="${iconPaths['pin-location']}" />
+              </svg>
+              <p class="text-h3 font-semiBold text-on-surface-variant-color" data-location></p>
+          </li>
       </ul>
     `
+
     fetchData(URL_PATH.REVERSEGEO(latitude, longitude), function ([{name, country}]) {
       card.querySelector('[data-location]').innerHTML = `${name}, ${country}`
     })

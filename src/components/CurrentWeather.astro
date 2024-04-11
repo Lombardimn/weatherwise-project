@@ -1,5 +1,5 @@
 ---
-import Icon from '../components/Icon.astro'
+import IconComponent from './IconComponent.astro'
 ---
 
 <article 
@@ -7,13 +7,13 @@ import Icon from '../components/Icon.astro'
   data-current-weather
   aria-label="current weather"
 >
-  <!-- <div class="bg-surface-color text-on-surface-color rounded-[28px] p-5">
+  <div class="bg-surface-color text-on-surface-color rounded-[28px] p-5">
     <h2 class="text-h2 md:mb-4">Actual</h2>
     <div class="mb-3 flex gap-2 items-center">
       <p class="text-white text-heading leading-tight">
         25&deg;<sup>C</sup>
       </p>
-      <Icon
+      <IconComponent
         icon="sunny" 
         width='140px' 
         heigth='140px'
@@ -24,7 +24,7 @@ import Icon from '../components/Icon.astro'
 
     <ul class="mt-4 pt-4 border-t-[1px] border-solid border-outline-color">
       <li class="flex items-center gap-2 mb-3 text-on-surface-color">
-        <Icon 
+        <IconComponent 
         icon="calendar"
         width='24px' 
         heigth='24px'
@@ -34,7 +34,7 @@ import Icon from '../components/Icon.astro'
       </li>
 
       <li class="flex items-center gap-2 text-on-surface-color">
-        <Icon 
+        <IconComponent 
           icon="pin-location" 
           width='36px' 
           heigth='36px' 
@@ -43,5 +43,5 @@ import Icon from '../components/Icon.astro'
         <p class="text-h3 font-semiBold text-on-surface-variant-color">Córdoba, AR</p>
       </li>
     </ul>
-  </div> -->
+  </div>
 </article>

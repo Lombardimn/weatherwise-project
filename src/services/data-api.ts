@@ -8,7 +8,7 @@ const API_URL_GEO = 'https://api.openweathermap.org/geo/1.0/'
  * @param {string} API_PATH
  * @param {Function} callback
  */
-export const fetchData = async (API_PATH: string, callback: Function) => {
+export const fetchData = (API_PATH: string, callback: Function) => {
   let url: string
   const funtionPath = API_PATH.split('?')[0]
   if (funtionPath.toUpperCase() === 'REVERSE' || funtionPath.toUpperCase() === 'DIRECT') {
@@ -17,21 +17,18 @@ export const fetchData = async (API_PATH: string, callback: Function) => {
     url = `${API_URL}${API_PATH}&appid=${API_KEY}`
   }
 
-  try {
-    const response = await fetch(url)
-    const data = await response.json()
-    callback(data)
-  } catch(error) {
-    console.error(`Error fetching data from ${url}:`, error)
-  }
+  fetch(url)
+    .then(response =>response.json())
+    .then(data => callback(data))
+    .catch(error => console.error(`Error fetching data from ${url}:`, error))
 }
 
 export const URL_PATH = {
   WEATHER(latitude: number, longitude: number) {
-    return `weather?lat=${latitude}&lon=${longitude}`
+    return `weather?lat=${latitude}&lon=${longitude}&units=metric`
   },
   FORECAST(latitude: number, longitude: number) {
-    return `forecast?lat=${latitude}&lon=${longitude}units=metric`
+    return `forecast?lat=${latitude}&lon=${longitude}&units=metric`
   },
   AIRPOLUTION(latitude: number, longitude: number) {
     return `air_pollution?lat=${latitude}&lon=${longitude}`
