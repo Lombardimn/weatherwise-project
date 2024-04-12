@@ -93,7 +93,8 @@ searchField.addEventListener("input", event => {
               <p class="item-title">${name}</p>
               <p class="label-2 item-subtitle text-on-surface-variant-color">${state || ""}, ${country}</p>
             </div>
-            <a href="#/weather?lat=${lat}&lon=${lon}" class="item-link absolute inset-0 shadow-none hover:shadow-shadow1 focus:shadow-none focus-visible:shadow-none before:content-[''] before:absolute before:inset-0 before:rounded-[inherit] before:clip-circle3 before:ease-in-out before:duration-100 hover:before:bg-white-alpha-4 focus:before:bg-white-alpha-8 focus:before:animate-ripple" data-search-toggler arial-label="${name} weather"></a>`
+            <a href="#/weather?lat=${lat}&lon=${lon}" class="item-link absolute inset-0 shadow-none hover:shadow-shadow1 focus:shadow-none focus-visible:shadow-none before:content-[''] before:absolute before:inset-0 before:rounded-[inherit] before:clip-circle3 before:ease-in-out before:duration-100 hover:before:bg-white-alpha-4 focus:before:bg-white-alpha-8 focus:before:animate-ripple" data-search-toggler arial-label="${name} weather"></a>
+          `
 
           searchResults.querySelector('[data-search-list]').appendChild(searchItem)
           items.push(searchItem.querySelector('[data-search-toggler]'))
@@ -180,7 +181,7 @@ export const updateWeather = (latitude: number, longitude: number): void => {
 
     card.innerHTML = `
       <h2 class="text-h2 md:mb-4">Actual</h2>
-      <div class="mb-3 flex gap-2 items-center">
+      <div class="mb-3 flex gap-12 items-center">
           <p class="text-white text-heading leading-tight">
               ${parseInt(temp)}&deg;<sup>C</sup>
           </p>
@@ -192,8 +193,9 @@ export const updateWeather = (latitude: number, longitude: number): void => {
               aria-hidden="true"
               stroke="color"
               fill="none"
+              class="mt-2"
           >
-              <g set:html="${iconPaths[icon]}" />
+            <g set:html="${iconPaths[icon]}" />
           </svg>
       </div>
       <p class="text-body3 capitalize">${translation}</p>
@@ -209,7 +211,7 @@ export const updateWeather = (latitude: number, longitude: number): void => {
                   stroke="color"
                   fill="none"
               >
-                  <g set:html="${iconPaths['calendar']}" />
+                <g set:html="${iconPaths['calendar']}" />
               </svg>
               <p class="text-h3 font-semiBold text-on-surface-variant-color">${module.getDate(dateUnix, timezone)}</p>
           </li>
@@ -224,7 +226,7 @@ export const updateWeather = (latitude: number, longitude: number): void => {
                   stroke="color"
                   fill="currentColor"
               >
-                  <g set:html="${iconPaths['pin-location']}" />
+                <g set:html="${iconPaths['pin-location']}" />
               </svg>
               <p class="text-h3 font-semiBold text-on-surface-variant-color" data-location></p>
           </li>
@@ -285,7 +287,7 @@ export const updateWeather = (latitude: number, longitude: number): void => {
                 aria-hidden="true"
                 stroke="color"
                 fill="none"
-                >
+              >
                 <g set:html="${iconPaths['wind-good']}" />
               </svg>
               <ul class="card-list flex items-center flex-wrap gap-y-2">
@@ -329,7 +331,7 @@ export const updateWeather = (latitude: number, longitude: number): void => {
                     aria-hidden="true"
                     stroke="color"
                     fill="none"
-                    >
+                  >
                     <g set:html="${iconPaths['sunrise']}" />
                   </svg>
                   <div>
@@ -347,7 +349,7 @@ export const updateWeather = (latitude: number, longitude: number): void => {
                     aria-hidden="true"
                     stroke="color"
                     fill="none"
-                    >
+                  >
                     <g set:html="${iconPaths['night']}" />
                   </svg>
                   <div>
@@ -370,7 +372,7 @@ export const updateWeather = (latitude: number, longitude: number): void => {
                   aria-hidden="true"
                   stroke="color"
                   fill="none"
-                  >
+                >
                   <g set:html="${iconPaths['humidity']}" />
                 </svg>
               </div>
@@ -411,7 +413,7 @@ export const updateWeather = (latitude: number, longitude: number): void => {
                   aria-hidden="true"
                   stroke="color"
                   fill="none"
-                  >
+                >
                   <g set:html="${iconPaths['visibility']}" />
                 </svg>
               </div>
@@ -431,7 +433,7 @@ export const updateWeather = (latitude: number, longitude: number): void => {
                   aria-hidden="true"
                   stroke="color"
                   fill="none"
-                  >
+                >
                   <g set:html="${iconPaths['thermostat']}" />
                 </svg>
               </div>

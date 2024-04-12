@@ -2,8 +2,7 @@ interface Status {
   [key: number]: string;
 }
 
-export const statusCode: Status =
-{
+export const statusCode: Status = {
   200: 'tormenta con lluvia ligera',
   201: 'tormenta con lluvia',
   202: 'tormenta con lluvia intensa',
@@ -55,10 +54,10 @@ export const statusCode: Status =
   771: 'tempestad, tormenta del mar',
   781: 'tornado',
   800: 'Cielo despejado',
-  801: 'pocas nubes: 11-25%',
-  802: 'nubes dispersas: 25-50%',
-  803: 'nubes fragmentadas: 51-84%',
-  804: 'cubierto: 85-100%',
+  801: 'pocas nubes',
+  802: 'nubes dispersas',
+  803: 'nubes fragmentadas',
+  804: 'cubierto',
 }
 
 export const translateDescription = (id: number): string | null => {
