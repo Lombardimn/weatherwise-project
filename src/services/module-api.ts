@@ -1,13 +1,13 @@
 import * as Interfaces from '../types/moduleTypes';
 
 export const weekDays : Interfaces.WeekDays = [
+  'Domingo',
   'Lunes',
   'Martes',
-  'Miercoles',
+  'Miércoles',
   'Jueves',
   'Viernes',
-  'Sabado',
-  'Domingo'
+  'Sábado',
 ]
 
 export const monthYear: Interfaces.Months = [
@@ -57,7 +57,6 @@ export const getDate = (dateUnix: number, timeZone: number): string => {
   const date = new Date((dateUnix + timeZone) * 1000)
   const daysName = weekDays[date.getUTCDay()]
   const monthName = monthYear[date.getUTCMonth()]
-
   return `${daysName} ${date.getUTCDate()}, ${monthName}`
 }
 
@@ -70,7 +69,6 @@ export const getTime = (dateUnix: number, timeZone: number): string => {
   const date = new Date((dateUnix + timeZone) * 1000);
   const hours = date.getUTCHours()
   const minutes = date.getUTCMinutes()
-  // const period = hours >= 12 ? 'PM' : 'AM'
   const formattedHours = hours < 10 ? '0' + hours : hours
   const formattedMinutes = minutes < 10 ? '0' + minutes : minutes
   

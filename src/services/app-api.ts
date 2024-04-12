@@ -121,7 +121,7 @@ export const updateWeather = (latitude: number, longitude: number): void => {
   container.classList.contains('fade-in') ?? container.classList.remove('fade-in')
 
   currentWeatherSection.innerHTML = ''
-  // highlightSection.innerHTML = ''
+  highlightSection.innerHTML = ''
   // forecastSection.innerHTML = ''
   // hourlySection.innerHTML = ''
 
@@ -163,20 +163,20 @@ export const updateWeather = (latitude: number, longitude: number): void => {
     const card = document.createElement('div')
     card.classList.add('bg-surface-color', 'text-on-surface-color', 'rounded-[28px]', 'p-5')
 
-    const iconContainer = document.createElement('div');
+    const iconContainer = document.createElement('div')
     const iconElement = document.createElement('svg')
 
-    iconElement.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
-    iconElement.setAttribute('width', '140px');
-    iconElement.setAttribute('height', '140px');
-    iconElement.setAttribute('viewBox', '0 0 404 328');
-    iconElement.setAttribute('aria-hidden', 'true');
-    iconElement.setAttribute('stroke', 'color');
-    iconElement.setAttribute('fill', 'none');
-    iconElement.innerHTML = `<g set:html="${iconPaths[icon]}" />`;
+    iconElement.setAttribute('xmlns', 'http://www.w3.org/2000/svg')
+    iconElement.setAttribute('width', '140px')
+    iconElement.setAttribute('height', '140px')
+    iconElement.setAttribute('viewBox', '0 0 404 328')
+    iconElement.setAttribute('aria-hidden', 'true')
+    iconElement.setAttribute('stroke', 'color')
+    iconElement.setAttribute('fill', 'none')
+    iconElement.innerHTML = `<g set:html="${iconPaths[icon]}" />`
 
-    iconContainer.appendChild(iconElement);
-    card.appendChild(iconContainer);
+    iconContainer.appendChild(iconElement)
+    card.appendChild(iconContainer)
 
     card.innerHTML = `
       <h2 class="text-h2 md:mb-4">Actual</h2>
@@ -186,9 +186,9 @@ export const updateWeather = (latitude: number, longitude: number): void => {
           </p>
           <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="140px"
-              height="140px"
-              viewBox="0 0 404 328"
+              width="160px"
+              height="160px"
+              viewBox="0 0 444 296"
               aria-hidden="true"
               stroke="color"
               fill="none"
@@ -217,12 +217,12 @@ export const updateWeather = (latitude: number, longitude: number): void => {
           <li class="flex items-center gap-2 text-on-surface-color">
               <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  width="36px"
-                  height="36px"
+                  width="24px"
+                  height="24px"
                   viewBox="0 0 24 24"
                   aria-hidden="true"
                   stroke="color"
-                  fill="none"
+                  fill="currentColor"
               >
                   <g set:html="${iconPaths['pin-location']}" />
               </svg>
@@ -236,6 +236,214 @@ export const updateWeather = (latitude: number, longitude: number): void => {
     })
 
     currentWeatherSection.appendChild(card)
+
+
+    /**
+     * Today's highlights
+     */
+
+    fetchData(URL_PATH.AIRPOLUTION(latitude, longitude), function (airPollution) {
+      const [{
+        main: {aqi},
+        components: {
+          no2,
+          o3,
+          so2,
+          pm2_5
+        }
+      }] = airPollution.list
+
+      const card = document.createElement('div')
+      card.classList.add('bg-surface-color', 'text-on-surface-color', 'rounded-[28px]', 'p-5')
+
+      const iconContainer = document.createElement('div')
+      const iconElement = document.createElement('svg')
+
+      iconElement.setAttribute('xmlns', 'http://www.w3.org/2000/svg')
+      iconElement.setAttribute('width', '140px')
+      iconElement.setAttribute('height', '140px')
+      iconElement.setAttribute('viewBox', '0 0 404 328')
+      iconElement.setAttribute('aria-hidden', 'true')
+      iconElement.setAttribute('stroke', 'color')
+      iconElement.setAttribute('fill', 'none')
+      iconElement.innerHTML = `<g set:html="${iconPaths[icon]}" />`
+
+      iconContainer.appendChild(iconElement)
+      card.appendChild(iconContainer)
+
+      card.innerHTML = `
+        <h2 class="text-h2 mb-3 md:mb-4" id ="highlight-label">Lo destacado de Hoy</h2>
+        <div class="highlight-list grid gap-5 lg:grid-cols-[1fr_1fr]">
+          <div class="highlight-card one relative bg-black-alpha-10 text-on-surface-color rounded-2xl p-4 md:p-5 lg:grid lg:grid-rows-[min-content,_1fr]">
+            <h3 class="text-h3 font-semiBold text-on-surface-variant-color mb-5 lg:w-52 xl:w-full">Índice de Calidad de Aire</h3>
+            <div class="wrapper flex justify-between gap-4 items-center">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="70px"
+                height="70px"
+                viewBox="0 0 263 221"
+                aria-hidden="true"
+                stroke="color"
+                fill="none"
+                >
+                <g set:html="${iconPaths['wind-good']}" />
+              </svg>
+              <ul class="card-list flex items-center flex-wrap gap-y-2">
+                <li class="card-item flex items-center w-1/2 justify-end gap-1">
+                  <p class="text-h1">${Number(pm2_5).toPrecision(3)}</p>
+                  <p class="text-h1">PM<sub>2.5</sub></p>
+                </li>
+    
+                <li class="card-item flex items-center w-1/2 justify-end gap-1">
+                  <p class="text-h1">${Number(so2).toPrecision(3)}</p>
+                  <p class="text-h1">SO<sub>2</sub></p>
+                </li>
+    
+                <li class="card-item flex items-center w-1/2 justify-end gap-1">
+                  <p class="text-h1">${Number(no2).toPrecision(3)}</p>
+                  <p class="text-h1">NO<sub>2</sub></p>
+                </li>
+    
+                <li class="card-item flex items-center w-1/2 justify-end gap-1">
+                  <p class="text-h1">${Number(o3).toPrecision(3)}</p>
+                  <p class="text-h1">O<sub>3</sub></p>
+                </li>
+              </ul>
+            </div>
+    
+            <span class="badge aqi-${aqi} label-${aqi} text-on-surface-variant-color absolute top-4 right-4 py-2 px-12 rounded-3xl font-semiBold cursor-help md:top-5 md:right-5" title="${module.aqiText[aqi].message}">
+              ${module.aqiText[aqi].level}
+            </span>
+    
+          </div>
+    
+          <div class="card card-sm highlight-card two relative flex flex-col justify-between bg-black-alpha-10 text-on-surface-color rounded-2xl p-4 md:p-8">
+            <h3 class="title-3 text-h3 font-semiBold mb-5">Amanecer & Atardecer</h3>
+            <div class="card-list flex items-center content-center">
+                <div class="card-item flex items-center w-1/2 justify-center flex-wrap gap-x-8 gap-y-16 md:gap-x-3 md:gap-y-2">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="50px"
+                    height="50px"
+                    viewBox="0 0 307 179"
+                    aria-hidden="true"
+                    stroke="color"
+                    fill="none"
+                    >
+                    <g set:html="${iconPaths['sunrise']}" />
+                  </svg>
+                  <div>
+                    <p class="label-1 text-label text-on-surface-variant-color mb-1">Amanecer</p>
+                    <p class="text-h3 lg:text-[2rem]">${module.getTime(sunriseUnixUTC, timezone)}</p>
+                  </div>
+                </div>
+    
+                <div class="card-item flex items-center w-1/2 justify-center flex-wrap gap-x-8 gap-y-16 md:gap-x-3 md:gap-y-2">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="50px"
+                    height="50px"
+                    viewBox="0 0 313 317"
+                    aria-hidden="true"
+                    stroke="color"
+                    fill="none"
+                    >
+                    <g set:html="${iconPaths['night']}" />
+                  </svg>
+                  <div>
+                    <p class="label-1 text-label text-on-surface-variant-color mb-1">Atardecer</p>
+                    <p class="text-h3 lg:text-[2rem]">${module.getTime(sunsetUnixUTC, timezone)}</p>
+                  </div>
+                </div>
+            </div>
+          </div>
+    
+          <div class="card card-sm highlight-card relative bg-black-alpha-10 text-on-surface-color rounded-2xl p-4 md:p-5 md:grid md:grid-rows-[min-content,_1fr]">
+            <h3 class="title-3 text-h3 font-semiBold mb-5">Humedad</h3>
+            <div class="wrapper flex justify-between gap-4 items-center">
+              <div class="m-3">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24px"
+                  height="24px"
+                  viewBox="0 0 175 247"
+                  aria-hidden="true"
+                  stroke="color"
+                  fill="none"
+                  >
+                  <g set:html="${iconPaths['humidity']}" />
+                </svg>
+              </div>
+              <p class="text-h1">${humidity}<sub>%</sub></p>
+            </div>
+          </div>
+    
+          <div class="card card-sm highlight-card relative bg-black-alpha-10 text-on-surface-color rounded-2xl p-4 md:p-5 md:grid md:grid-rows-[min-content,_1fr]">
+            <h3 class="title-3 text-h3 font-semiBold mb-5">Presión</h3>
+            <div class="wrapper flex justify-between gap-4 items-center">
+              <div class="m-3">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24px"
+                  height="24px"
+                  viewBox="0 0 512.00 512.00"
+                  aria-hidden="true"
+                  stroke="color"
+                  fill="none"
+                  >
+                  <g set:html="${iconPaths['pressure']}" />
+                </svg>
+              </div>
+    
+              <p class="text-h1">${pressure}<sub>hPa</sub></p>
+            </div>
+          </div>
+    
+          <div class="card card-sm highlight-card relative bg-black-alpha-10 text-on-surface-color rounded-2xl p-4 md:p-5 md:grid md:grid-rows-[min-content,_1fr]">
+            <h3 class="title-3 text-h3 font-semiBold mb-5">Visibilidad</h3>
+            <div class="wrapper flex justify-between gap-4 items-center">
+              <div class="m-3">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24px"
+                  height="24px"
+                  viewBox="0 0 512 512"
+                  aria-hidden="true"
+                  stroke="color"
+                  fill="none"
+                  >
+                  <g set:html="${iconPaths['visibility']}" />
+                </svg>
+              </div>
+              <p class="text-h1">${visibility / 1000}<sub>Km</sub></p>
+            </div>
+          </div>
+    
+          <div class="card card-sm highlight-card relative bg-black-alpha-10 text-on-surface-color rounded-2xl p-4 md:p-5 md:grid md:grid-rows-[min-content,_1fr]">
+            <h3 class="title-3 text-h3 font-semiBold mb-5">Sensación térmica</h3>
+            <div class="wrapper flex justify-between gap-4 items-center">
+              <div class="m-3">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="28px"
+                  height="28px"
+                  viewBox="0 0 217 342"
+                  aria-hidden="true"
+                  stroke="color"
+                  fill="none"
+                  >
+                  <g set:html="${iconPaths['thermostat']}" />
+                </svg>
+              </div>
+              <p class="text-h1">${parseInt(feels_like)}&deg;<sup>C</sup></p>
+            </div>
+          </div>
+        </div>
+      `
+
+      highlightSection.appendChild(card)
+    })
+
   })
 }
 
