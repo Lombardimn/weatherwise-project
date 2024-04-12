@@ -445,6 +445,13 @@ export const updateWeather = (latitude: number, longitude: number): void => {
 
       highlightSection.appendChild(card)
     })
+    
+    /**
+     * 24hs Forecast
+     */
+
+    
+
 
   })
 }
