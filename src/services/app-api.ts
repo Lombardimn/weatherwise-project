@@ -118,25 +118,20 @@ export const updateWeather = (latitude: number, longitude: number): void => {
   // loading.classList.add('flex')
   // loading.classList.toggle('hidden')
   
-  // container.style.overflowY = 'hidden'
-  container.classList.contains('fade-in') ?? container.classList.remove('fade-in')
+  //container.style.overflowY = 'hidden'
+  container.classList.contains('animate-blurred-fade-in') ?? container.classList.remove('animate-blurred-fade-in', 'animate-duration-slower')
 
   currentWeatherSection.innerHTML = ''
   highlightSection.innerHTML = ''
-  // hourlySection.innerHTML = ''
-  //forecastSection.innerHTML = ''
+  forecastSection.innerHTML = ''
 
   if (window.location.hash === '#/current-location') {
     if (currentLocationBtn) {
       currentLocationBtn.classList.add('disabled')
-      currentLocationBtn.setAttribute('aria-disabled', 'true');
-      currentLocationBtn.setAttribute('tabindex', '-1');
     }
   } else {
     if (currentLocationBtn) {
       currentLocationBtn.classList.remove('disabled')
-      currentLocationBtn.removeAttribute('aria-disabled');
-      currentLocationBtn.removeAttribute('tabindex');
     }
   }
 
@@ -440,7 +435,7 @@ export const updateWeather = (latitude: number, longitude: number): void => {
             wind: { deg: windDirection, speed: windSpeed },
           } = data
   
-          const [{ description, icon }] = weather
+          const [{ icon, description }] = weather
           const windLi = document.createElement("li")
   
           windLi.classList.add("slider-item", "min-w-28", "flex", "flex-2", "md:flex-none", "md:grid")
@@ -458,7 +453,7 @@ export const updateWeather = (latitude: number, longitude: number): void => {
                 <div class="weather-icon mx-auto my-3 flex-1">
                   <img
                     src="/icons/statusWeather/${icon}.svg"
-                    alt=${description}
+                    alt="${description}"
                   >
                 </div>
                 <p class="body-3 text-body3">${parseInt(temp)}&deg;</p>
@@ -494,6 +489,51 @@ export const updateWeather = (latitude: number, longitude: number): void => {
 
             element.appendChild(windLi)
           })
+        }
+
+        /**
+         * 5 Days forecast section
+         */
+
+        forecastSection.innerHTML = `
+          <h2 class="text-h2 mb-2 ms-2 md:mb-4" id="forecast-label">
+            Próximos 5 días
+          </h2>
+          <section class="forecast-card bg-surface-color text-on-surface-color rounded-[28px] p-5">
+            <ul class="flex flex-col gap-2" data-item-forecast></ul>
+          </section>
+        `
+
+        for( let i=7, len = forecastList.length; i < len; i+=8){
+          const {
+            main: { temp_max },
+            weather,
+            dt_txt,
+          } = forecastList[i]
+
+          const [{ icon, description }] = weather
+          const date = new Date(dt_txt)
+          const daysWeather = document.createElement('li')
+          daysWeather.classList.add("card-item", "flex" ,"justify-between", "items-center" ,"mb-3")
+
+          daysWeather.innerHTML = `
+            <div class="icon-wrapper flex justify-center items-center gap-2">
+            <div class="ms-0 me-0">
+              <img
+                src="/icons/statusWeather/${icon}.svg"
+                alt="${description}"
+              >
+            </div>
+            <span class="span flex justify-center items-center">
+              <p class="text-h2 mb-0">${parseInt(temp_max)}&deg;</p>
+            </span>
+          </div>
+
+          <p class="text-label text-on-surface-variant font-semibold text-right w-full text-on-surface-variant-color">${date.getDate()} ${module.monthYear[date.getUTCMonth()]}</p>
+          <p class="text-label text-on-surface-variant font-semibold text-right w-full text-on-surface-variant-color">${module.weekDays[date.getUTCDay()]}</p>
+          `
+
+          forecastSection.querySelector('[data-item-forecast]').appendChild(daysWeather)
         }
       })
     })
