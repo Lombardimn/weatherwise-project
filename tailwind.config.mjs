@@ -49,6 +49,7 @@ export default {
 			'body': '2.2rem',
 			'body2': '2rem',
 			'body3': '1.6rem',
+			'body4': '1.2rem',
 			'label': '1.4rem',
 			'label2': '1.2rem',
 			},

@@ -36,7 +36,7 @@ const currentLocationBtn = document.querySelector('[data-current-location-btn]')
 const currentWeatherSection = document.querySelector('[data-current-weather]') as HTMLElement | null
 const highlightSection = document.querySelector('[data-highlights]') as HTMLElement | null
 const forecastSection = document.querySelector('[data-5-day-forecast]') as HTMLElement | null
-const hourlySection = document.querySelector('[data-hourly-forecast]') as HTMLElement | null
+const hourlySection = document.querySelectorAll('[data-hourly-forecast]') as NodeListOf<HTMLElement> | null
 
 const searchTimeoutDuration = 500
 let searchTimeout = null
@@ -123,8 +123,8 @@ export const updateWeather = (latitude: number, longitude: number): void => {
 
   currentWeatherSection.innerHTML = ''
   highlightSection.innerHTML = ''
-  // forecastSection.innerHTML = ''
   // hourlySection.innerHTML = ''
+  //forecastSection.innerHTML = ''
 
   if (window.location.hash === '#/current-location') {
     if (currentLocationBtn) {
@@ -161,25 +161,10 @@ export const updateWeather = (latitude: number, longitude: number): void => {
      */
     const translation = translateDescription(id);
 
-    const card = document.createElement('div')
-    card.classList.add('bg-surface-color', 'text-on-surface-color', 'rounded-[28px]', 'p-5')
+    const cardCurrentWeather = document.createElement('div')
+    cardCurrentWeather.classList.add('bg-surface-color', 'text-on-surface-color', 'rounded-[28px]', 'p-5')
 
-    const iconContainer = document.createElement('div')
-    const iconElement = document.createElement('svg')
-
-    iconElement.setAttribute('xmlns', 'http://www.w3.org/2000/svg')
-    iconElement.setAttribute('width', '140px')
-    iconElement.setAttribute('height', '140px')
-    iconElement.setAttribute('viewBox', '0 0 404 328')
-    iconElement.setAttribute('aria-hidden', 'true')
-    iconElement.setAttribute('stroke', 'color')
-    iconElement.setAttribute('fill', 'none')
-    iconElement.innerHTML = `<g set:html="${iconPaths[icon]}" />`
-
-    iconContainer.appendChild(iconElement)
-    card.appendChild(iconContainer)
-
-    card.innerHTML = `
+    cardCurrentWeather.innerHTML = `
       <h2 class="text-h2 md:mb-4">Actual</h2>
       <div class="mb-3 flex gap-12 items-center">
           <p class="text-white text-heading leading-tight">
@@ -234,10 +219,10 @@ export const updateWeather = (latitude: number, longitude: number): void => {
     `
 
     fetchData(URL_PATH.REVERSEGEO(latitude, longitude), function ([{name, country}]) {
-      card.querySelector('[data-location]').innerHTML = `${name}, ${country}`
+      cardCurrentWeather.querySelector('[data-location]').innerHTML = `${name}, ${country}`
     })
 
-    currentWeatherSection.appendChild(card)
+    currentWeatherSection.appendChild(cardCurrentWeather)
 
 
     /**
@@ -255,25 +240,10 @@ export const updateWeather = (latitude: number, longitude: number): void => {
         }
       }] = airPollution.list
 
-      const card = document.createElement('div')
-      card.classList.add('bg-surface-color', 'text-on-surface-color', 'rounded-[28px]', 'p-5')
+      const cardHighlights = document.createElement('div')
+      cardHighlights.classList.add('bg-surface-color', 'text-on-surface-color', 'rounded-[28px]', 'p-5')
 
-      const iconContainer = document.createElement('div')
-      const iconElement = document.createElement('svg')
-
-      iconElement.setAttribute('xmlns', 'http://www.w3.org/2000/svg')
-      iconElement.setAttribute('width', '140px')
-      iconElement.setAttribute('height', '140px')
-      iconElement.setAttribute('viewBox', '0 0 404 328')
-      iconElement.setAttribute('aria-hidden', 'true')
-      iconElement.setAttribute('stroke', 'color')
-      iconElement.setAttribute('fill', 'none')
-      iconElement.innerHTML = `<g set:html="${iconPaths[icon]}" />`
-
-      iconContainer.appendChild(iconElement)
-      card.appendChild(iconContainer)
-
-      card.innerHTML = `
+      cardHighlights.innerHTML = `
         <h2 class="text-h2 mb-3 md:mb-4" id ="highlight-label">Lo destacado de Hoy</h2>
         <div class="highlight-list grid gap-5 lg:grid-cols-[1fr_1fr]">
           <div class="highlight-card one relative bg-black-alpha-10 text-on-surface-color rounded-2xl p-4 md:p-5 lg:grid lg:grid-rows-[min-content,_1fr]">
@@ -443,16 +413,99 @@ export const updateWeather = (latitude: number, longitude: number): void => {
         </div>
       `
 
-      highlightSection.appendChild(card)
+      highlightSection.appendChild(cardHighlights)
     })
     
     /**
      * 24hs Forecast
      */
 
-    
+    fetchData(URL_PATH.FORECAST(latitude, longitude), function (forecast) {
+      const {
+        list: forecastList,
+        city: { timezone }
+      } = forecast
 
+      hourlySection.forEach((element: HTMLElement) => {
+        element.innerHTML = ''
+        element.innerHTML = `
+          <h2 class="title-2 text-h2 mb-3 md:mb-4 md:pt-8">A partir de</h2>
+          <div class="slider-container overflow-x-auto -mx-4 md:mx-0">
+            <ul class="slider-list flex gap-3 before:content-[''] before:min-w-1 after:content-[''] after:min-w-1 first:mb-4 md:before:content-none md:grid md:grid-cols-[repeat(7,_1fr)] md:gap-12" data-temp></ul>
+  
+            <ul class="slider-list flex gap-3 before:content-[''] before:min-w-1 after:content-[''] after:min-w-1 first:mb-4 md:before:content-none md:grid md:grid-cols-[repeat(7,_1fr)] md:gap-12" data-wind></ul>
+          </div>
+        `
+        for(const [index, data] of forecastList.entries()) {
+          if (index > 6) break
+  
+          const {
+            dt: dateUnix,
+            main: { temp },
+            weather,
+            wind: { deg: windDirection, speed: windSpeed },
+          } = data
+  
+          const [{ icon }] = weather
+          const windLi = document.createElement("li")
+  
+          windLi.classList.add("slider-item", "min-w-28", "flex", "flex-2", "md:flex-none", "md:grid")
 
+          const dataTemp = element.querySelectorAll('[data-temp]') as NodeListOf<HTMLElement>
+          const dataWind = element.querySelectorAll('[data-wind]') as NodeListOf<HTMLElement>
+
+          dataTemp.forEach((element: HTMLElement) => {
+            const tempLi = document.createElement("li")
+            tempLi.classList.add("slider-item", "min-w-28", "flex", "flex-2", "md:flex-none", "md:grid")
+
+            tempLi.innerHTML = `
+              <div class="card card-sm slider-card bg-surface-color text-on-surface-color rounded-2xl p-4 text-center">
+                <p class="body-3 text-body3">${module.getHours(dateUnix, timezone)}</p>
+                <div class="weather-icon mx-auto my-3">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="48px"
+                    height="48px"
+                    viewBox="0 0 444 404"
+                  >
+                    <g set:html="${iconPaths[icon]}" />
+                  </svg>
+                </div>
+                <p class="body-3 text-body3">${parseInt(temp)}&deg;</p>
+              </div>
+            `
+
+            element.appendChild(tempLi)
+          })
+
+          dataWind.forEach((element: HTMLElement) => {
+            const windLi = document.createElement("li")
+            windLi.classList.add("slider-item", "min-w-28", "flex", "flex-2", "md:flex-none", "md:grid")
+
+            windLi.innerHTML = `
+                <div class="card card-sm slider-card bg-surface-color text-on-surface-color rounded-2xl p-4 text-center md:p-5 md:grid md:grid-rows-[min-content,_1fr]">
+                  <p class="body-3 text-body3">${module.getHours(dateUnix, timezone)}</p>
+                  <div class="weather-icon mx-auto my-3">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="40px"
+                      height="40px"
+                      viewBox="0 0 32 32"
+                      aria-hidden="true"
+                      stroke="color"
+                      fill="none"
+                      style="transform: rotate(${windDirection - 180}deg)"
+                    >
+                      <g set:html="${iconPaths['arrow']}" />
+                    </svg>
+                  </div>
+                  <p class="body-3 text-body3">${parseInt(module.mps_to_kmh(windSpeed))} <span class="body-4">km/h<span></p>
+                </div>`
+
+                element.appendChild(windLi)
+          })
+        }
+      })
+    })
   })
 }
-
