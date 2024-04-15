@@ -170,18 +170,12 @@ export const updateWeather = (latitude: number, longitude: number): void => {
           <p class="text-white text-heading leading-tight">
               ${parseInt(temp)}&deg;<sup>C</sup>
           </p>
-          <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="160px"
-              height="160px"
-              viewBox="0 0 444 296"
-              aria-hidden="true"
-              stroke="color"
-              fill="none"
-              class="mt-2"
-          >
-            <g set:html="${iconPaths[icon]}" />
-          </svg>
+          <div>
+            <img
+              src="/icons/statusWeather/${icon}.svg"
+              alt=${translation}
+            >
+          </div>
       </div>
       <p class="text-body3 capitalize">${translation}</p>
 
@@ -446,7 +440,7 @@ export const updateWeather = (latitude: number, longitude: number): void => {
             wind: { deg: windDirection, speed: windSpeed },
           } = data
   
-          const [{ icon }] = weather
+          const [{ description, icon }] = weather
           const windLi = document.createElement("li")
   
           windLi.classList.add("slider-item", "min-w-28", "flex", "flex-2", "md:flex-none", "md:grid")
@@ -459,17 +453,13 @@ export const updateWeather = (latitude: number, longitude: number): void => {
             tempLi.classList.add("slider-item", "min-w-28", "flex", "flex-2", "md:flex-none", "md:grid")
 
             tempLi.innerHTML = `
-              <div class="card card-sm slider-card bg-surface-color text-on-surface-color rounded-2xl p-4 text-center">
+              <div class="card card-sm slider-card bg-surface-color text-on-surface-color rounded-2xl p-4 text-center flex flex-col">
                 <p class="body-3 text-body3">${module.getHours(dateUnix, timezone)}</p>
-                <div class="weather-icon mx-auto my-3">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="48px"
-                    height="48px"
-                    viewBox="0 0 444 404"
+                <div class="weather-icon mx-auto my-3 flex-1">
+                  <img
+                    src="/icons/statusWeather/${icon}.svg"
+                    alt=${description}
                   >
-                    <g set:html="${iconPaths[icon]}" />
-                  </svg>
                 </div>
                 <p class="body-3 text-body3">${parseInt(temp)}&deg;</p>
               </div>
@@ -483,26 +473,26 @@ export const updateWeather = (latitude: number, longitude: number): void => {
             windLi.classList.add("slider-item", "min-w-28", "flex", "flex-2", "md:flex-none", "md:grid")
 
             windLi.innerHTML = `
-                <div class="card card-sm slider-card bg-surface-color text-on-surface-color rounded-2xl p-4 text-center md:p-5 md:grid md:grid-rows-[min-content,_1fr]">
-                  <p class="body-3 text-body3">${module.getHours(dateUnix, timezone)}</p>
-                  <div class="weather-icon mx-auto my-3">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="40px"
-                      height="40px"
-                      viewBox="0 0 32 32"
-                      aria-hidden="true"
-                      stroke="color"
-                      fill="none"
-                      style="transform: rotate(${windDirection - 180}deg)"
-                    >
-                      <g set:html="${iconPaths['arrow']}" />
-                    </svg>
-                  </div>
-                  <p class="body-3 text-body3">${parseInt(module.mps_to_kmh(windSpeed))} <span class="body-4">km/h<span></p>
-                </div>`
+              <div class="card card-sm slider-card bg-surface-color text-on-surface-color rounded-2xl p-4 text-center md:p-5 md:grid md:grid-rows-[min-content,_1fr]">
+                <p class="body-3 text-body3">${module.getHours(dateUnix, timezone)}</p>
+                <div class="weather-icon mx-auto my-3">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="40px"
+                    height="40px"
+                    viewBox="0 0 32 32"
+                    aria-hidden="true"
+                    stroke="color"
+                    fill="none"
+                    style="transform: rotate(${windDirection - 180}deg)"
+                  >
+                    <g set:html="${iconPaths['arrow']}" />
+                  </svg>
+                </div>
+                <p class="body-3 text-body3">${parseInt(module.mps_to_kmh(windSpeed))} <span class="body-4">km/h<span></p>
+              </div>`
 
-                element.appendChild(windLi)
+            element.appendChild(windLi)
           })
         }
       })
