@@ -14,14 +14,14 @@ import Icon from "./IconComponent.astro"
   </a>
 
   <section 
-    class="search-view fixed top-0 left-0 w-full h-svh bg-surface-color text-on-surface-color clip-circle opacity-0 hidden z-[2] active:opacity-100 active:visible active:clip-circle2 md:clip-circle4 xl:active:[all:unset] xl:active:block xl:active:relative xl:active:width-[500px] xl:active:animate-none"
+    class="search-view fixed top-0 left-0 w-full h-svh bg-surface-color text-on-surface-color clip-circle opacity-0 hidden z-[2] active:opacity-100 active:visible active:clip-circle2 md:clip-circle4 lg:active lg:[all:unset] lg:block lg:relative lg:width-[500px] lg:animate-none lg:active:[all:unset] lg:active:block lg:active:relative lg:active:width-[500px] lg:active:animate-none"
     data-search-view
   >
     <article 
-      class="search-wrapper relative border-b border-solid border-outline-color before:content-[''] before:absolute before:top-1/2 before:transform before:-translate-y-1/2 before:right-4 before:w-10 before:h-10 before:border-[3px] before:border-solid before:border-on-surface-color before:rounded-full before:border-t-transparent before:animate-loading before:hidden has-[.searching]:before:block group xl:border-none" 
+      class="search-wrapper relative border-b border-solid border-outline-color before:content-[''] before:absolute before:top-1/2 before:transform before:-translate-y-1/2 before:right-4 before:w-10 before:h-10 before:border-[3px] before:border-solid before:border-on-surface-color before:rounded-full before:border-t-transparent before:animate-loading before:hidden has-[.searching]:before:block group lg:border-none" 
     >
       <input
-        class="search-field h-20 leading-[80px] ps-20 pe-4 focus:outline-none placeholder:text-on-surface-variant-2-color appearance-none xl:bg-surface-color xl:h-14 xl:rounded-[28px] xl:w-[400px]"
+        class="search-field h-20 leading-[80px] ps-20 pe-4 focus:outline-none placeholder:text-on-surface-variant-2-color appearance-none lg:bg-surface-color lg:h-14 lg:rounded-[28px] lg:w-[400px]"
         name="searching location"
         data-search-field
         type="search"
@@ -52,7 +52,7 @@ import Icon from "./IconComponent.astro"
       </button>
     </article>
 
-    <article class="search-result xl:hidden" data-search-result></article>
+    <article class="search-result lg:block" data-search-result></article>
   </section>
 
   <section class="header-actions flex items-center gap-4 md:gap-6 justify-between">

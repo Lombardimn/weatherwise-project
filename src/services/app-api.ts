@@ -72,13 +72,13 @@ searchField.addEventListener("input", event => {
         searchField.classList.remove("searching")
         searchResults.classList.add("active")
         searchResults.innerHTML = `
-          <ul class="view-list pt-2 pb-4 lg:bg-surface-color xl:h-14 lg:rounded-[28px] xl:absolute xl:top-full xl:left-0 xl:w-full xl:max-h-[360px] xl:rounded-[0_0_28px_28px] xl:border-t-2 xl:border-solid xl:border-outline-color xl:overflow-y-overlay xl:empty:min-h-32" data-search-list></ul>`
+          <ul class="view-list pt-2 pb-4 lg:bg-surface-color lg:h-14 lg:absolute lg:top-full lg:left-50 lg:w-[400px] lg:max-h-[360px] lg:rounded-[0_0_28px_28px] lg:border-t-2 lg:border-solid lg:border-outline-color lg:overflow-y-overlay lg:empty:min-h-32" data-search-list></ul>`
 
         const /** {NodeList} | [] */ items: HTMLElement[] = [];
 
         for (const {name, lat, lon, country, state} of locations) {
           const searchItem = document.createElement("li")
-          searchItem.classList.add('view-item', 'relative', 'h-16', 'flex', 'content-start', 'items-center', 'gap-4', 'ps-4', 'pe-6')
+          searchItem.classList.add('view-item', 'relative', 'h-16', 'flex', 'content-start', 'items-center', 'gap-4', 'ps-4', 'pe-6', 'lg:bg-surface-color', 'lg:border-x-1', 'lg:border-solid', 'lg:border-outline-color', 'lg:rounded-[28px]')
           searchItem.innerHTML = `
             <div class="text-on-surface-variant-color">
               <Icon 
@@ -103,6 +103,8 @@ searchField.addEventListener("input", event => {
         addEventOnElement(items, "click", function () {
           toggleSearch()
           searchResults.classList.remove("active")
+          searchResults.innerHTML = ''
+          searchField.value = ''
         })
       })
     }, searchTimeoutDuration)
@@ -115,10 +117,10 @@ searchField.addEventListener("input", event => {
  * @param longitude number
  */
 export const updateWeather = (latitude: number, longitude: number): void => {
-  // loading.classList.add('flex')
-  // loading.classList.toggle('hidden')
+  loading.classList.add('flex')
+  loading.classList.toggle('hidden')
   
-  //container.style.overflowY = 'hidden'
+  container.style.overflowY = 'hidden'
   container.classList.contains('animate-blurred-fade-in') ?? container.classList.remove('animate-blurred-fade-in', 'animate-duration-slower')
 
   currentWeatherSection.innerHTML = ''
@@ -148,7 +150,6 @@ export const updateWeather = (latitude: number, longitude: number): void => {
       visibility,
       timezone
     } = currentWeather
-    console.log(currentWeather)
     const [{icon, id}] = weather
 
     /**
@@ -157,7 +158,7 @@ export const updateWeather = (latitude: number, longitude: number): void => {
     const translation = translateDescription(id);
 
     const cardCurrentWeather = document.createElement('div')
-    cardCurrentWeather.classList.add('bg-surface-color', 'text-on-surface-color', 'rounded-[28px]', 'p-5')
+    cardCurrentWeather.classList.add('bg-surface-color', 'text-on-surface-color', 'rounded-[28px]', 'p-8')
 
     cardCurrentWeather.innerHTML = `
       <h2 class="text-h2 md:mb-4">Actual</h2>
@@ -420,9 +421,9 @@ export const updateWeather = (latitude: number, longitude: number): void => {
         element.innerHTML = `
           <h2 class="title-2 text-h2 mb-3 md:mb-4 md:pt-8">A partir de</h2>
           <div class="slider-container overflow-x-auto -mx-4 md:mx-0">
-            <ul class="slider-list flex gap-3 before:content-[''] before:min-w-1 after:content-[''] after:min-w-1 first:mb-4 md:before:content-none md:grid md:grid-cols-[repeat(7,_1fr)] md:gap-12" data-temp></ul>
+            <ul class="slider-list flex gap-3 before:content-[''] before:min-w-1 after:content-[''] after:min-w-1 first:mb-4 md:before:content-none md:grid md:grid-cols-[repeat(7,_1fr)] md:gap-8" data-temp></ul>
   
-            <ul class="slider-list flex gap-3 before:content-[''] before:min-w-1 after:content-[''] after:min-w-1 first:mb-4 md:before:content-none md:grid md:grid-cols-[repeat(7,_1fr)] md:gap-12" data-wind></ul>
+            <ul class="slider-list flex gap-3 before:content-[''] before:min-w-1 after:content-[''] after:min-w-1 first:mb-4 md:before:content-none md:grid md:grid-cols-[repeat(7,_1fr)] md:gap-8" data-wind></ul>
           </div>
         `
         for(const [index, data] of forecastList.entries()) {
@@ -450,10 +451,11 @@ export const updateWeather = (latitude: number, longitude: number): void => {
             tempLi.innerHTML = `
               <div class="card card-sm slider-card bg-surface-color text-on-surface-color rounded-2xl p-4 text-center flex flex-col">
                 <p class="body-3 text-body3">${module.getHours(dateUnix, timezone)}</p>
-                <div class="weather-icon mx-auto my-3 flex-1">
+                <div class="weather-icon mx-auto my-3">
                   <img
                     src="/icons/statusWeather/${icon}.svg"
                     alt="${description}"
+                    class="md:h-32 object-contain"
                   >
                 </div>
                 <p class="body-3 text-body3">${parseInt(temp)}&deg;</p>
@@ -473,8 +475,8 @@ export const updateWeather = (latitude: number, longitude: number): void => {
                 <div class="weather-icon mx-auto my-3">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    width="40px"
-                    height="40px"
+                    width="52px"
+                    height="52px"
                     viewBox="0 0 32 32"
                     aria-hidden="true"
                     stroke="color"
@@ -499,7 +501,7 @@ export const updateWeather = (latitude: number, longitude: number): void => {
           <h2 class="text-h2 mb-2 ms-2 md:mb-4" id="forecast-label">
             Próximos 5 días
           </h2>
-          <section class="forecast-card bg-surface-color text-on-surface-color rounded-[28px] p-5">
+          <section class="forecast-card bg-surface-color text-on-surface-color rounded-[28px] p-8">
             <ul class="flex flex-col gap-2" data-item-forecast></ul>
           </section>
         `
@@ -518,7 +520,7 @@ export const updateWeather = (latitude: number, longitude: number): void => {
 
           daysWeather.innerHTML = `
             <div class="icon-wrapper flex justify-center items-center gap-2">
-            <div class="ms-0 me-0">
+            <div class="ms-0 me-0 w-28">
               <img
                 src="/icons/statusWeather/${icon}.svg"
                 alt="${description}"
@@ -535,6 +537,11 @@ export const updateWeather = (latitude: number, longitude: number): void => {
 
           forecastSection.querySelector('[data-item-forecast]').appendChild(daysWeather)
         }
+
+        loading.classList.add('hidden')
+        loading.classList.toggle('flex')
+        container.style.overflowY = 'overlay'
+        container.classList.add('animate-blurred-fade-in', 'animate-duration-slower')
       })
     })
   })
