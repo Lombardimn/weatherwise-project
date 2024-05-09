@@ -1,10 +1,4 @@
-
-const API_KEY = '393f2ac20fd6442e4d1af2ec5c83d52a'
-const API_URL = 'https://api.openweathermap.org/data/2.5/'
-const API_URL_GEO = 'https://api.openweathermap.org/geo/1.0/'
-
 /**
- * 
  * @param {string} API_PATH
  * @param {Function} callback
  */
@@ -12,9 +6,9 @@ export const fetchData = (API_PATH: string, callback: Function) => {
   let url: string
   const funtionPath = API_PATH.split('?')[0]
   if (funtionPath.toUpperCase() === 'REVERSE' || funtionPath.toUpperCase() === 'DIRECT') {
-    url = `${API_URL_GEO}${API_PATH}&appid=${API_KEY}`
+    url = `${process.env.API_URL_GEO}${API_PATH}&appid=${process.env.API_KEY}`
   } else {
-    url = `${API_URL}${API_PATH}&appid=${API_KEY}`
+    url = `${process.env.API_URL}${API_PATH}&appid=${process.env.API_KEY}`
   }
 
   fetch(url)
